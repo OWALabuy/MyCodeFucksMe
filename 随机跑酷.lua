@@ -103,7 +103,11 @@ local function genBlock(UIN)
         PDB[UIN].lastBloPos.x = PDB[UIN].lastBloPos.x + xp
         PDB[UIN].lastBloPos.y = PDB[UIN].lastBloPos.y + yp
         PDB[UIN].lastBloPos.z = PDB[UIN].lastBloPos.z + zp
-
+        
+        if(PDB[UIN].lastBloPos.y < 0) --避免生成到虚空
+        then
+            PDB[UIN].lastBloPos.y = 0
+        end
         --生成方块
         local result = Block:placeBlock(bloId, PDB[UIN].lastBloPos.x, PDB[UIN].lastBloPos.y, PDB[UIN].lastBloPos.z,0)
         if(result == 1001)
