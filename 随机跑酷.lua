@@ -75,6 +75,7 @@ local intro = {
 
 --玩家进入游戏
 ScriptSupportEvent:registerEvent([=[Game.AnyPlayer.EnterGame]=], function(event) --eventobjid,shortix,x,y,z
+    local UIN = event.eventobjid
     local result,x,y,z=Actor:getPosition(event.eventobjid) --获取玩家的位置
     PDB[event.eventobjid] = { --在数据库中创建玩家的索引
         lastBloPos = {x = x, y = y - 1, z = z},
@@ -83,23 +84,25 @@ ScriptSupportEvent:registerEvent([=[Game.AnyPlayer.EnterGame]=], function(event)
     }
     for i = 1, #intro
     do
-        msg(intro[i], UIN)
+        msg(intro[i], event.eventobjid)
     end
 end)
 
 --玩家死亡（重置他的数据）
 ScriptSupportEvent:registerEvent([=[Player.Die]=], function(event) --eventobjid,shortix,x,y,z
-    
+    local UIN = event.eventobjid
 end)
 
 --玩家点击方块（选择方块）
 ScriptSupportEvent:registerEvent([=[Player.ClickBlock]=], function(event) --eventobjid,blockid,x,y,z
+    local UIN = event.eventobjid
     PDB[UIN].blockIdList[#PDB[UIN].blockIdList + 1] = event.blockid
-    msg(string.format("已将%d方块拉清单",event.blockid),UIN)
+    msg(string.format("已将%d方块拉清单",event.blockid), event.eventobjid)
 end)
 
 --玩家输入字符串
 ScriptSupportEvent:registerEvent([=[Player.NewInputContent]=], function (event) -- eventobjid,content
+    local UIN = event.eventobjid
     if(event.content == "1" or event.content == "2" or event.content == "3")
     then--改变难度
         PDB[UIN].level = tonumber(event.content)
@@ -113,6 +116,7 @@ end)
 
 --玩家行走一格
 ScriptSupportEvent:registerEvent([=[Player.MoveOneBlockSize]=], function (event)--eventobjid,shortix,x,y,z
+    local UIN = event.eventobjid
     if(event.z >= 10) --不在起点内 可以开始游戏
     then
         if(PDB[event.eventobjid].lastBloPos.z - event.z <= 8)--小于8格 向前随机生成方块
