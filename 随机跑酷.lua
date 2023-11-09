@@ -44,6 +44,8 @@ randomXYZ[1] = function ()
     end
 end
 
+
+
 --向前生成方块的函数 参数是玩家的迷你号
 local function genBlock(UIN)
     local ind = math.random(1, #PDB[UIN].blockIdList)--随机选一种方块的索引
@@ -63,7 +65,13 @@ local function genBlock(UIN)
 end
 
 
-
+local intro = {
+    "欢迎来到随机跑酷",
+    "点击任意方块可将该种方块拉入跑酷赛道清单",
+    "输入1/2/3可选择难度 1最简单 3最难",
+    "输入4将方块清单清空",
+    "支持多人联机比赛awa",
+}
 
 --玩家进入游戏
 ScriptSupportEvent:registerEvent([=[Game.AnyPlayer.EnterGame]=], function(event) --eventobjid,shortix,x,y,z
@@ -73,6 +81,10 @@ ScriptSupportEvent:registerEvent([=[Game.AnyPlayer.EnterGame]=], function(event)
         blockIdList = {536},--一个曙光石块
         level = 1,
     }
+    for i = 1, #intro
+    do
+        msg(intro[i], UIN)
+    end
 end)
 
 --玩家死亡（重置他的数据）
@@ -82,19 +94,37 @@ end)
 
 --玩家点击方块（选择方块）
 ScriptSupportEvent:registerEvent([=[Player.ClickBlock]=], function(event) --eventobjid,blockid,x,y,z
-    
+    PDB[UIN].blockIdList[#PDB[UIN].blockIdList + 1] = event.blockid
+    msg(string.format("已将%d方块拉清单",event.blockid),UIN)
 end)
 
 --玩家输入字符串
 ScriptSupportEvent:registerEvent([=[Player.NewInputContent]=], function (event) -- eventobjid,content
-    
+    if(event.content == "1" or event.content == "2" or event.content == "3")
+    then--改变难度
+        PDB[UIN].level = tonumber(event.content)
+        msg(string.format("您的难度已设置为%d", PDB[UIN].level), UIN)
+    elseif(event.content == "4")--清空清单
+    then
+        PDB[UIN].blockIdList = {}
+        msg("您的清单已经清空", UIN)
+    end
 end)
 
 --玩家行走一格
 ScriptSupportEvent:registerEvent([=[Player.MoveOneBlockSize]=], function (event)--eventobjid,shortix,x,y,z
-    if(PDB[event.eventobjid].lastBloPos.z - event.z <= 8)--小于8格 向前随机生成方块
+    if(event.z >= 10) --不在起点内 可以开始游戏
     then
-        genBlock(event.eventobjid)
+        if(PDB[event.eventobjid].lastBloPos.z - event.z <= 8)--小于8格 向前随机生成方块
+        then
+            genBlock(event.eventobjid)
+        end
     end
+end)
 
+--方块被放置 等待多少秒 将那个方块移除
+local waitTime = 10
+ScriptSupportEvent:registerEvent([=[Block.Add]=], function(event)--blockid,x,y,z
+    Trigger:wait(waitTime)
+    Block:destroyBlock(event.x, event.y, event.z, false)
 end)
