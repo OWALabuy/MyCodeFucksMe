@@ -26,41 +26,90 @@ local randomXYZ = {}
 --以z正方向为前方
 --返回xyz作为下一个生成的坐标加值
 randomXYZ[1] = function ()
-    local ran = math.random(1, 10)--是否连体
-    if(ran < 8)--正常生成
+    local z = 0
+    local y = 0 --定义一下awa
+    local ran = math.random(1, 3)--是否上下 1/3概率上下
+    if(ran == 3)--上下
     then
-        local y = math.random(-1, 1)--y的取值可以取-1 0 1
-        local z = 0 --定义一下awa
-        if(y == 1 or y == 0)
+        y = math.random(0, 1) --取-1 或1 这两个值
+        if(y == 0)
         then
-            z = math.random(1, 2)
-        else
-            z = math.random(1, 3)
+            y = y - 1
         end
-        local x = math.random(-1, 1)
-        return x, y, z
-    else--连体生成
-        return 0, 0, 1
+    else --不上下
+        y = 0
     end
+    
+    if(y == 1 or y == 0)
+    then
+        z = math.random(1, 2)
+    else
+        z = math.random(1, 3)
+    end
+    local x = math.random(-1, 1)
+    return x, y, z
 end
 
-
+local siameseStyle = { --连体的五个样式
+    [1] = {
+        {x = 0, z = 1},
+        {x = 0, z = 2},
+    },
+    [2] = {
+        {x = 1, z = 1},
+        {x = 1, z = 2},
+    },
+    [3] = {
+        {x = -1, z = 1},
+        {x = -1, z = 2},
+    },
+    [4] = {
+        {x = 0, z = 1},
+        {x = -1, z = 1},
+        {x = -1, z = 2},
+    },
+    [5] = {
+        {x = 0, z = 1},
+        {x = 1, z = 1},
+        {x = 1, z = 2},
+    },
+}
 
 --向前生成方块的函数 参数是玩家的迷你号
 local function genBlock(UIN)
     local ind = math.random(1, #PDB[UIN].blockIdList)--随机选一种方块的索引
     local bloId = PDB[UIN].blockIdList[ind] --获取这次要生成的id
-    local xp, yp, zp = randomXYZ[PDB[UIN].level]() --获取坐标增量
-    --记入坐标增量
-    PDB[UIN].lastBloPos.x = PDB[UIN].lastBloPos.x + xp
-    PDB[UIN].lastBloPos.y = PDB[UIN].lastBloPos.y + yp
-    PDB[UIN].lastBloPos.z = PDB[UIN].lastBloPos.z + zp
 
-    --生成方块
-    local result = Block:placeBlock(bloId, PDB[UIN].lastBloPos.x, PDB[UIN].lastBloPos.y, PDB[UIN].lastBloPos.z,0)
-    if(result == 1001)
+    local isSiamese = math.random(1, 4) --是否连体（1/4概率连体）
+    if(isSiamese == 1) --连体
     then
-        msg("生成方块失败！", UIN)
+        local siaInd = math.random(1, 5)
+        for i = 1, #siameseStyle[siaInd]
+        do
+            --记入坐标增量
+            PDB[UIN].lastBloPos.x = PDB[UIN].lastBloPos.x + siameseStyle[siaInd].x
+            PDB[UIN].lastBloPos.z = PDB[UIN].lastBloPos.z + siameseStyle[siaInd].z
+
+            --生成方块
+            local result = Block:placeBlock(bloId, PDB[UIN].lastBloPos.x, PDB[UIN].lastBloPos.y, PDB[UIN].lastBloPos.z,0)
+            if(result == 1001)
+            then
+                msg("生成方块失败！", UIN)
+            end
+        end
+    else
+        local xp, yp, zp = randomXYZ[PDB[UIN].level]() --获取坐标增量
+        --记入坐标增量
+        PDB[UIN].lastBloPos.x = PDB[UIN].lastBloPos.x + xp
+        PDB[UIN].lastBloPos.y = PDB[UIN].lastBloPos.y + yp
+        PDB[UIN].lastBloPos.z = PDB[UIN].lastBloPos.z + zp
+
+        --生成方块
+        local result = Block:placeBlock(bloId, PDB[UIN].lastBloPos.x, PDB[UIN].lastBloPos.y, PDB[UIN].lastBloPos.z,0)
+        if(result == 1001)
+        then
+            msg("生成方块失败！", UIN)
+        end
     end
 end
 
