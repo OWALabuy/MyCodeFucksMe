@@ -308,6 +308,7 @@
 <li>布尔值 boolean</li>
 <li>空值 nil</li>
 <li>表 table 函数 function</li>
+<li>获得一个变量的数据类型</li>
 </ol>
 </li>
 <li>变量作用域简介</li>
@@ -393,13 +394,14 @@ a = <span class="hljs-number">4</span>
 <p>Lua语言中 总共有8种数据类型 分别是 <code>number</code> <code>string</code> <code>boolean</code> <code>nil</code> <code>table</code> <code>function</code> <code>userdata</code> <code>thread</code></p>
 <p>在这个教程中 我们会提到前六个数据类型 而在本节 我们只详细讲解前四个</p>
 <p>在Lua中 你不需要对变量的数据类型进行显示的指定</p>
-<p>变量的数据类型会根据其中的值来确定 你也可以为一个变量赋值</p>
+<p>变量的数据类型会根据其中的值来确定 你也可以为一个变量先后赋值不同数据类型的数据 以改变它的值</p>
+<p>不像C/C++那样对数据类型要求严格的编程语言</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.1 number" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.1 number;--theme:default;">
 <header>3.2.1 number</header>
 
-<h1 id="number-%E6%95%B0%E5%80%BC">number 数值</h1>
+<h2 id="number-%E6%95%B0%E5%80%BC">number 数值</h2>
 <p>在Lua中 <code>number</code>类型包括整数和双精度浮点数 也就是小数</p>
 <p>如 1314 114.514 -1024等</p>
 <p>你可以直接将这些数值赋值给变量</p>
@@ -412,7 +414,7 @@ c = <span class="hljs-number">-1024</span>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.2 string" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.2 string;--theme:default;">
 <header>3.2.2 string</header>
 
-<h1 id="string-%E5%AD%97%E7%AC%A6%E4%B8%B2">string 字符串</h1>
+<h2 id="string-%E5%AD%97%E7%AC%A6%E4%B8%B2">string 字符串</h2>
 <p>字符串是用单引号<code>'</code> 双引号<code>&quot;</code> 双中括号<code>[[]]</code>括起来的一串文字</p>
 <p>单行字符串使用单引号或双引号定义 多行字符串使用双中括号定义</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">str1 = <span class="hljs-string">&#x27;我是一个用单引号定义的字符串&#x27;</span>
@@ -429,7 +431,7 @@ str4 = <span class="hljs-string">[==[如果你觉得双中括号不好看或不�
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.3 boolean" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.3 boolean;--theme:default;">
 <header>3.2.3 boolean</header>
 
-<h1 id="boolean-%E5%B8%83%E5%B0%94%E5%80%BC">boolean 布尔值</h1>
+<h2 id="boolean-%E5%B8%83%E5%B0%94%E5%80%BC">boolean 布尔值</h2>
 <p>布尔值是用来定义真或假的值 它只有两个值 <code>true</code>和<code>false</code></p>
 <p>在Lua的判断中</p>
 <p>空值<code>nil</code>和<code>false</code>会被判断为假</p>
@@ -439,7 +441,7 @@ str4 = <span class="hljs-string">[==[如果你觉得双中括号不好看或不�
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.4 nil" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.4 nil;--theme:default;">
 <header>3.2.4 nil</header>
 
-<h1 id="nil-%E7%A9%BA%E5%80%BC">nil 空值</h1>
+<h2 id="nil-%E7%A9%BA%E5%80%BC">nil 空值</h2>
 <p>空值就代表一个不存在的值 当你尝试去检索一个没有定义过的变量 它会显示为<code>nil</code></p>
 <p>当你不想要一个变量了 可以通过将<code>nil</code>赋值给它 来删除它</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--两个减号后面的字是注释 不会被看成代码运行 这会在注释那一节中详细讲</span>
@@ -459,12 +461,29 @@ a = <span class="hljs-literal">nil</span>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.5 `table` and `function`" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.5 `table` and `function`;--theme:default;">
 <header>3.2.5 <code>table</code> and <code>function</code></header>
 
-<h1 id="table-and-function"><code>table</code> and <code>function</code></h1>
+<h2 id="table-and-function"><code>table</code> and <code>function</code></h2>
 <p>这是Lua中比较复杂的数据类型 表和函数</p>
 <p>在这一章中暂时不详细讲 后续会有专门的章节介绍这现个数据类型的用法</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.3 变量作用域简介" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.3 变量作用域简介;--theme:default;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.2.6 获得一个变量的数据类型" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.2.6 获得一个变量的数据类型;--theme:default;">
+<header>3.2.6 获得一个变量的数据类型</header>
+
+<h2 id="%E8%8E%B7%E5%BE%97%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">获得一个变量的数据类型</h2>
+<p>我们可以使用<code>type</code>来获取一个变量或一个值的数据类型 这会返回一个字符串</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> a = <span class="hljs-string">&#x27;我是一个字符串&#x27;</span>
+<span class="hljs-keyword">local</span> type_of_a = <span class="hljs-built_in">type</span>(a)
+<span class="hljs-built_in">print</span>(type_of_a) <span class="hljs-comment">--这将输出 string</span>
+
+<span class="hljs-comment">--对一个没有定义过的变量求类型 会返回&quot;nil&quot;</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(awa)) <span class="hljs-comment">--awa是没有定义过的变量</span>
+
+<span class="hljs-comment">--同样 也可以对一个值检测数据类型</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-number">114514</span>)) <span class="hljs-comment">--输出 number</span>
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.3 变量作用域简介" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.3 变量作用域简介;--theme:default;">
 <header>3.3 变量作用域简介</header>
 
 <h1 id="%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%AE%80%E4%BB%8B">变量作用域简介</h1>
@@ -477,13 +496,18 @@ b = <span class="hljs-string">&quot;我前面没有local 我是全局变量&quot
 <p>我们现在还没有讲到复杂的代码结构 各位只需要记住定义即可 在流程控制和循环的章节的应用中 会对变量作用域有比较详细的演示和说明</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.4 注释与代码规范" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.4 注释与代码规范;--theme:default;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.4 注释与代码规范" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.4 注释与代码规范;--theme:default;">
 <header>3.4 注释与代码规范</header>
 
 <h1 id="%E6%B3%A8%E9%87%8A%E4%B8%8E%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83">注释与代码规范</h1>
+<p>写代码需要遵守一定的代码规范 注释清晰 排版美观的代码不仅可以提高自己的编码效率 减少因为&quot;看不懂自己代码&quot;导致的麻烦 还可以使阅读你代码的人心情愉悦</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--theme:default;"><footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="3.4.1 注释" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:3.4.1 注释;--theme:default;">
+<header>3.4.1 注释</header>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--theme:default;"><footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=null!==(t=this.shadowRoot.querySelector(`div[${e}]`))&&void 0!==t?t:void 0;const l=this.svg;this.svg=null!==(o=null===(s=this.wrapper)||void 0===s?void 0:s.querySelector(`svg[${i}]`))&&void 0!==o?o:void 0,this.svg!==l&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=null!==(a=null===(r=this.svg)||void 0===r?void 0:r.querySelector(`span[${n}]`))&&void 0!==a?a:void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){var t,e,i,n,s,o,r;let a=Math.ceil(null!==(e=null===(t=this.containerSize)||void 0===t?void 0:t.width)&&void 0!==e?e:0);const l=Math.ceil(null!==(n=null===(i=this.containerSize)||void 0===i?void 0:i.height)&&void 0!==n?n:0);void 0!==this.dataset.downscaleOnly&&(a=Math.max(a,null!==(o=null===(s=this.wrapperSize)||void 0===s?void 0:s.width)&&void 0!==o?o:0));const c=null===(r=this.svg)||void 0===r?void 0:r.querySelector(":scope > foreignObject");if(null==c||c.setAttribute("width",`${a}`),null==c||c.setAttribute("height",`${l}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${a} ${l}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=a<=0||l<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const o=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this.attachShadow({mode:"open"})}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_update(){const t=i?`<style>:host { ${i} }</style>`:"";let e="<slot></slot>";const{autoScaling:n}=this.dataset;if(void 0!==n){e=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===n?"data-downscale-only":""}>${e}</marp-auto-scaling>`}this.shadowRoot.innerHTML=t+e}};let r;const a=Symbol();let l;const c="marpitSVGPolyfill:setZoomFactor,",d=Symbol(),g=Symbol();const h=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[u]:[],i={then:e=>(t?(async()=>{if(void 0===l){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise((t=>{i.addEventListener("load",(()=>t()))}));i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),l=e.getImageData(5,5,1,1).data[3]<128}return l})().then((t=>{null==e||e(t?[u]:[])})):null==e||e([]),i)};return Object.assign(e,i)};let p,m;function u(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(c)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(m=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,o,r;t.style.transform||(t.style.transform="translateZ(0)");const a=i||m||t.currentScale||1;p!==a&&(p=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(r=null===(o=n.y)||void 0===o?void 0:o.baseVal.value)&&void 0!==r?r:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${c}${n}`,"null"===window.origin?"*":window.origin)}))}function v({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[d])return t[d];let e=!0;const i=()=>{e=!1,delete t[d]};Object.defineProperty(t,d,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await h()}finally{s=!0}})();const o=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(o)};return o(),i}(e);return t?(i(),()=>{}):i}p=1,m=void 0;const b=Symbol(),w=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();null!=r||(r=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is")),r&&a!==HTMLElement?i||customElements.define(s,o(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,o(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[b])return e[b];const i=v({target:e}),n=()=>{i(),delete e[b]},l=Object.assign(n,{cleanup:n,update:()=>w(e)});return Object.defineProperty(e,b,{configurable:!0,value:l}),l},y=document.currentScript;w(y?y.getRootNode():document)}();
 </script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@3.4.0/lib/bespoke.js.LICENSE.txt */
