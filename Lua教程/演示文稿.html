@@ -21,7 +21,6 @@
 }
 ;"><script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  //import mermaid from 'mermaid.min.js';
   mermaid.initialize({ startOnLoad: true });
 </script>
 <h1 id="%E8%BF%B7%E4%BD%A0%E4%B8%96%E7%95%8Clua%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B">迷你世界Lua脚本入门教程</h1>
@@ -1417,12 +1416,14 @@ b = a + <span class="hljs-number">3</span>
 <h1 id="%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6">流程控制</h1>
 <p>在现实中 我们可能会有这样一些经历:</p>
 <p>我想吃鱼 或是猪肉 如果集市上有卖鱼 我就吃鱼 不然我就去买猪肉吃</p>
-<div class="mermaid">
+<pre class="mermaid">
 graph LR
-<p>A(今天吃什么) --&gt; B{市场有没有鱼}<br />
-B --有--&gt; C(我买鱼)<br />
-B --没有--&gt; D(我买猪肉)</p>
-</div>
+
+A(今天吃什么) --&gt; B{市场有没有鱼}
+B --有--&gt; C(我买鱼)
+B --没有--&gt; D(我买猪肉)
+
+</pre>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="6. 循环" data-theme="default" data-style=".columns {
