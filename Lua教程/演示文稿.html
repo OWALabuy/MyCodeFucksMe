@@ -3386,10 +3386,14 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 
 <blockquote>
 <ol>
-<li>表的构造</li>
-<li>数组形式的表与键值对形式的表</li>
+<li>表的构造
+<ol>
+<li>数组形式的表</li>
+<li>键值对形式的表</li>
+</ol>
+</li>
 <li>字符串作为索引时的语法糖</li>
-<li>删除表中元素</li>
+<li>增加 删除表中元素</li>
 <li>求表的长度</li>
 <li>遍历一个表
 <ol>
@@ -3403,7 +3407,619 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="125" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9. 函数" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="125" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.1 表的构造" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.1 表的构造;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.1 表的构造</header>
+
+<h1 id="%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0">表的构造</h1>
+<p><strong>表(table)</strong> 是lua中的一个复杂数据类型 它有数组形式和键值对形式</p>
+<p>它是一个很强大的数据结构 Lua中 数组 哈希表 面向对象的功能都可以用表实现</p>
+<p>构造一个表 可以用一对大括号实现 如下是构造一个空的表</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {}
+
+<span class="hljs-keyword">local</span> tp = <span class="hljs-built_in">type</span>(myTable) <span class="hljs-comment">--使用type检测其类型</span>
+<span class="hljs-built_in">print</span>(tp) <span class="hljs-comment">--会输出table</span>
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="126" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.1.1 数组形式的表" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.1.1 数组形式的表;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.1.1 数组形式的表</header>
+
+<h2 id="%E6%95%B0%E7%BB%84%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%A1%A8">数组形式的表</h2>
+<p>数组是一串数据的结合体 数组中的成员称为元素 在某些编程语言中 要求数组中所有数据是相同的数据类型(如C/C++) 但是在Lua语言中没有此要求 然而 数组在实际应用中还是更常用于存放一组类型相同的数据</p>
+<p>要构造一个数组 只需要将数据用逗号<code>,</code>隔开放在一个表中即可</p>
+<p>要索引一个数组中的元素 使用中括号<code>[]</code>加上数字即可索引</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myArray = {<span class="hljs-number">10</span>, <span class="hljs-number">24</span>, <span class="hljs-number">32</span>, <span class="hljs-number">48</span>, <span class="hljs-number">56</span>}
+
+<span class="hljs-built_in">print</span>(myArray[<span class="hljs-number">3</span>]) <span class="hljs-comment">--输出32</span>
+</code></pre>
+<p><em>lua中的数组索引是从1开始的</em></p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="127" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.1.1 数组形式的表" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.1.1 数组形式的表;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.1.1 数组形式的表</header>
+
+<p>当然 数组的成员不仅仅可以是普通的数据类型 还可以是表和函数等等</p>
+<p>这里演示一个二维数组</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myArray = {
+    {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>},
+    {<span class="hljs-number">55</span>, <span class="hljs-number">66</span>, <span class="hljs-number">77</span>, <span class="hljs-number">88</span>},
+}
+
+<span class="hljs-comment">--可以通过双重索引来访问到其中的元素</span>
+<span class="hljs-built_in">print</span>(myArray[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>]) <span class="hljs-comment">--输出77</span>
+</code></pre>
+<p>可以根据需求创建三维甚至更多维度的数组</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="128" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.1.2 键值对形式的表" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.1.2 键值对形式的表;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.1.2 键值对形式的表</header>
+
+<h2 id="%E9%94%AE%E5%80%BC%E5%AF%B9%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%A1%A8">键值对形式的表</h2>
+<p>在数组中 表的索引是从1开始的数字 其实我们可以自定义表的索引 使用<code>[]</code>框住一个值 作为该元素的索引 索引可以是任何简单数据类型 或是变量中的值</p>
+<p>注意: 索引不可以是<code>nil</code> !</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> awa = <span class="hljs-string">&quot;喵喵喵&quot;</span>
+<span class="hljs-keyword">local</span> myTable = {[<span class="hljs-number">4.5</span>] = <span class="hljs-number">20</span>, [<span class="hljs-literal">true</span>] = <span class="hljs-number">5</span>, [awa] = <span class="hljs-number">3</span>, [<span class="hljs-string">&quot;cat&quot;</span>] = <span class="hljs-string">&quot;meow&quot;</span>}
+
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">4.5</span>])
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-string">&quot;cat&quot;</span>])
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="129" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.1.2 键值对形式的表" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.1.2 键值对形式的表;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.1.2 键值对形式的表</header>
+
+<p>为了使表看起来美观清晰 我们可以对其进行排版</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> awa = <span class="hljs-string">&quot;喵喵喵&quot;</span>
+<span class="hljs-keyword">local</span> myTable = {
+    [<span class="hljs-number">4.5</span>] = <span class="hljs-number">20</span>,
+    [<span class="hljs-literal">true</span>] = <span class="hljs-number">5</span>,
+    [awa] = <span class="hljs-number">3</span>,
+    [<span class="hljs-string">&quot;cat&quot;</span>] = <span class="hljs-string">&quot;meow&quot;</span>,
+}
+</code></pre>
+<p>最后一条的逗号可以加可以不加 不影响整体运行 但是前面每条的末尾必须加逗号</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="130" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.2 字符串作为索引时的语法糖" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.2 字符串作为索引时的语法糖;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.2 字符串作为索引时的语法糖</header>
+
+<h1 id="%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BD%9C%E4%B8%BA%E7%B4%A2%E5%BC%95%E6%97%B6%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96">字符串作为索引时的语法糖</h1>
+<p>在键值对形式的表中 最常用的索引形式是字符串 例如创建一个关于人物的表</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> person = {
+    [<span class="hljs-string">&quot;name&quot;</span>] = <span class="hljs-string">&quot;OWALabuy&quot;</span>,
+    [<span class="hljs-string">&quot;age&quot;</span>] = <span class="hljs-number">13</span>,
+    [<span class="hljs-string">&quot;height&quot;</span>] = <span class="hljs-number">139</span>,
+    [<span class="hljs-string">&quot;skill&quot;</span>] = {
+        <span class="hljs-string">&quot;cooking&quot;</span>,
+        <span class="hljs-string">&quot;programming&quot;</span>,
+        <span class="hljs-string">&quot;music&quot;</span>,
+    },
+}
+
+<span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;name&quot;</span>])
+</code></pre>
+<p>在使用字符串作为索引时 需要用<code>[]</code>和<code>&quot;&quot;</code>把字段框起来 显得非常臃肿 且输入麻烦</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="131" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<p>Lua中提供了一种语法糖来简化这个操作</p>
+<br />
+<div class="columns">
+<div>
+<p>当表的索引为字符串时 我们可以直接写这个字符串 而不使用中括号和引号</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> person = {
+    name = <span class="hljs-string">&quot;OWALabuy&quot;</span>,
+    age = <span class="hljs-number">13</span>,
+    height = <span class="hljs-number">139</span>,
+    skill = {
+        <span class="hljs-string">&quot;cooking&quot;</span>,
+        <span class="hljs-string">&quot;programming&quot;</span>,
+        <span class="hljs-string">&quot;music&quot;</span>,
+    }
+}
+</code></pre>
+</div>
+<div>
+<p>在访问这些数据时 可以用<code>.</code>加上这个字段</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--以下这两条是完全等价的</span>
+<span class="hljs-built_in">print</span>(person.name)
+<span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;name&quot;</span>])
+
+<span class="hljs-comment">--语法糖可以与中括号同时使用</span>
+<span class="hljs-built_in">print</span>(person.skill[<span class="hljs-number">2</span>])
+<span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;skill&quot;</span>][<span class="hljs-number">2</span>])
+</code></pre>
+<p><strong>注意: 这个语法糖仅在索引为字符串时可用 它是固定的 而如果要使用变量中的数据为表的成员创索引或访问数据 应该加上<code>[]</code></strong></p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="132" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.3 增加 删除表中元素" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.3 增加 删除表中元素;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.3 增加 删除表中元素</header>
+
+<h1 id="%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E8%A1%A8%E4%B8%AD%E5%85%83%E7%B4%A0">增加 删除表中元素</h1>
+<p>表中的元素不仅仅可以在初始的时候给定 后期还能动态地插入 表是不定长度的</p>
+<p>直接指定其索引和值即可为表添加新元素 为已存在的索引赋新的值可改变其值</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>}
+
+myTable[<span class="hljs-number">4</span>] = <span class="hljs-number">44</span>
+
+<span class="hljs-comment">--原有的元素和新增的元素都能被正常访问</span>
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">2</span>])
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">4</span>])
+
+<span class="hljs-comment">--修改其索引中的值</span>
+myTable[<span class="hljs-number">2</span>] = <span class="hljs-number">24</span>
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">2</span>])
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="133" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.3 增加 删除表中元素" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.3 增加 删除表中元素;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.3 增加 删除表中元素</header>
+
+<p>想要删除一个元素 直接向其索引赋值<code>nil</code></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>}
+
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">2</span>])
+
+<span class="hljs-comment">--删除一个元素</span>
+myTable[<span class="hljs-number">2</span>] = <span class="hljs-literal">nil</span>
+
+<span class="hljs-built_in">print</span>(myTable[<span class="hljs-number">2</span>])
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="134" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.4 求表的长度" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.4 求表的长度;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.4 求表的长度</header>
+
+<h1 id="%E6%B1%82%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6">求表的长度</h1>
+<p>对于数组形式的表 可以用<code>#</code>来求其长度 会得到其元素的个数</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {
+    cat = {<span class="hljs-string">&quot;eat&quot;</span>, <span class="hljs-string">&quot;play&quot;</span>, <span class="hljs-string">&quot;sleep&quot;</span>},
+    dog = {<span class="hljs-string">&quot;owner&quot;</span>, <span class="hljs-string">&quot;love&quot;</span>, <span class="hljs-string">&quot;eat&quot;</span>, <span class="hljs-string">&quot;walking&quot;</span>}
+}
+
+<span class="hljs-built_in">print</span>(#myTable) <span class="hljs-comment">--是2 因为其中有cat和dog两个元素</span>
+<span class="hljs-built_in">print</span>(#myTable.cat) <span class="hljs-comment">--是3 cat是一个表 其中有三个字符串作为它的元素</span>
+</code></pre>
+<p>注意 如果数组形式的表中有断点 这个方法会返回断点处的值 而不是完整的表长 但是一般的数组形式的表不会出现断点 不考虑这个问题</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="135" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.5 遍历一个表" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.5 遍历一个表;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.5 遍历一个表</header>
+
+<h1 id="%E9%81%8D%E5%8E%86%E4%B8%80%E4%B8%AA%E8%A1%A8">遍历一个表</h1>
+<p>想要遍历一个表 可以采用两种方法遍历 <code>for</code>循环和迭代器</p>
+<p>实际上<code>while</code>循环和<code>repeat...until</code>循环也可以实现遍历的效果 但是远不如<code>for</code>循环方便 所以如果需要有序遍历一个表 通常的选择是<code>for</code>循环</p>
+<p>而迭代器常用在表的索引不是数值的情况下 如哈希表</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="136" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.5.1 for循环" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.5.1 for循环;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.5.1 for循环</header>
+
+<h2 id="for%E5%BE%AA%E7%8E%AF-1">for循环</h2>
+<p>对于一个数组 我们会用<code>for</code>循环去遍历它 例如</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myArray = {<span class="hljs-number">13</span>, <span class="hljs-number">92</span>, <span class="hljs-number">46</span>, <span class="hljs-number">17</span>, <span class="hljs-number">1</span>}
+
+<span class="hljs-comment">--从1到数组的长度 进行遍历</span>
+<span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, #myArray
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(myArray[i])
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>以上例子展示了遍历一维数组 并输出每个元素 如果要遍历更高维的数组 可以使用循环嵌套</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="137" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.5.2 迭代器" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.5.2 迭代器;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.5.2 迭代器</header>
+
+<h2 id="%E8%BF%AD%E4%BB%A3%E5%99%A8">迭代器</h2>
+<p>迭代器分为两种 分别是<code>pairs()</code>和<code>ipairs()</code> 它们的写法如下</p>
+<div class="columns">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> t = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>}
+t.a1 = <span class="hljs-string">&quot;a1&quot;</span>
+
+<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(t) <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(index, value)
+<span class="hljs-keyword">end</span>
+</code></pre>
+</div>
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> t = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>}
+t.a1 = <span class="hljs-string">&quot;a1&quot;</span>
+
+<span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(t) <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(key, value)
+<span class="hljs-keyword">end</span>
+</code></pre>
+</div>
+</div>
+<p>以上的例子中 表包括数组部分和键值对部分 添加了<code>a1</code>字段作为它的键值对部分</p>
+<p><code>ipairs</code>和普通的for循环一样 只会遍历数组部分 而不会遍历到哈希部分(键值部分)</p>
+<p>而<code>pairs</code>可以遍历完整的表 逐个读取元素的键和值 不管是不是数字作为索引</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="138" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.5.2 迭代器" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.5.2 迭代器;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.5.2 迭代器</header>
+
+<p>在迭代器中 变量的名字是可以自己定义的 刚刚的例子中是这样写的</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(t) <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(key, value)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>也可以把那些变量的名字改成你喜欢的值</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(t) <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(k, v)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="139" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6 常用操作" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6 常用操作;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6 常用操作</header>
+
+<h1 id="%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C">常用操作</h1>
+<p>本节将介绍一些关于数组形式的表的常用操作 当这些操作的对象是有数组部分也有哈希部分的表时 只会对数组部分生效</p>
+<ol>
+<li>连接</li>
+<li>插入</li>
+<li>删除</li>
+<li>排序</li>
+</ol>
+<p>本节内容参考自<a href="https://www.runoob.com/lua/lua-tables.html">菜鸟教程</a></p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="140" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.1 连接" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.1 连接;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.1 连接</header>
+
+<h2 id="%E8%BF%9E%E6%8E%A5-1">连接</h2>
+<p>可以用<code>table.concat(table, sep, start, end)</code>来使一个数组形式的表变成一个字符串 方便我们进行预览 <code>table</code>是待操作的表 <code>sep</code>是分隔符 一个字符串 这个函数会列出从<code>start</code>到<code>end</code>的所有元素 并用指定的分隔符隔开</p>
+<p><code>sep</code> <code>start</code> <code>end</code> 可以省略 省略情况下会从头部连接到尾部</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>, <span class="hljs-number">55</span>, <span class="hljs-number">66</span>}
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable)) <span class="hljs-comment">--省略情况下</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>)) <span class="hljs-comment">--指定其分隔符</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)) <span class="hljs-comment">--指定其首尾</span>
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="141" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.2 插入" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.2 插入;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.2 插入</header>
+
+<h2 id="%E6%8F%92%E5%85%A5">插入</h2>
+<p>要在数组中插入一个元素可以使用<code>table.insert(table, pos, value)</code> <code>table</code>是要操作的那个表 <code>pos</code>是插入的点 <code>value</code>是插入的值 其中<code>pos</code>可省略 默认是在数组尾部插入</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>, <span class="hljs-number">55</span>, <span class="hljs-number">66</span>}
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>)) <span class="hljs-comment">--输出表的预览</span>
+
+<span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span>(myTable, <span class="hljs-number">77</span>) <span class="hljs-comment">--不指定插入的位置 默认为尾部</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>))
+
+<span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span>(myTable, <span class="hljs-number">5</span>, <span class="hljs-number">52</span>) <span class="hljs-comment">--指定插入的位置 会把后面的元素后移</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>))
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="142" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.3 删除" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.3 删除;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.3 删除</header>
+
+<h2 id="%E5%88%A0%E9%99%A4">删除</h2>
+<p>要从数组中删除元素 可以使用<code>table.remove(table, pos)</code> <code>table</code>是操作的表 <code>pos</code>是要删除的元素的索引 <code>pos</code>可以省略 默认从尾部删除</p>
+<p>与插入不同 这个函数可以返回被删除的元素的值</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> myTable = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>, <span class="hljs-number">55</span>, <span class="hljs-number">66</span>}
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>)) <span class="hljs-comment">--输出表的预览</span>
+
+<span class="hljs-keyword">local</span> delete = <span class="hljs-built_in">table</span>.<span class="hljs-built_in">remove</span>(myTable) <span class="hljs-comment">--删除尾部元素</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;被删除的元素是&quot;</span> .. delete)
+
+delete = <span class="hljs-built_in">table</span>.<span class="hljs-built_in">remove</span>(myTable, <span class="hljs-number">2</span>) <span class="hljs-comment">--删除指定元素 后面的元素会前移</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(myTable, <span class="hljs-string">&quot;, &quot;</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;被删除的元素是&quot;</span> .. delete)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="143" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.4 排序" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.4 排序;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.4 排序</header>
+
+<h2 id="%E6%8E%92%E5%BA%8F">排序</h2>
+<p>可以使用<code>table.sort(table, comp)</code>对一个数组排序 <code>table</code>操作的表 <code>comp</code>是一个排序规则函数 可省略</p>
+<p>如果数组中的是字符串 根据其字母的排序 如果数组中的是数值 按数值升序排序(小的在前)</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> tab = {<span class="hljs-number">13</span>, <span class="hljs-number">92</span>, <span class="hljs-number">4</span>, <span class="hljs-number">61</span>, <span class="hljs-number">71</span>}
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(tab, <span class="hljs-string">&quot;, &quot;</span>))
+
+<span class="hljs-built_in">table</span>.<span class="hljs-built_in">sort</span>(tab)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(tab, <span class="hljs-string">&quot;, &quot;</span>))
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="144" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.4 排序" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.4 排序;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.4 排序</header>
+
+<h3 id="%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F">根据数组元素的子字段排序</h3>
+<p>在某些情景中 数组中的元素是一个表 其中有一个特征值 我们需要根据那个表的特征值来进行排序 这样 就需要用到<code>table.sort</code>的<code>comp</code>参数了</p>
+<p>例如 我们要做一个玩家排行榜 玩家数组中的每一个元素都有两个字段 <code>name</code>和<code>score</code> 分别代表其名字和分数 我们需要根据分数这一字段对玩家进行排序</p>
+<p>这时 就需要在排序中这样操作</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-built_in">table</span>.<span class="hljs-built_in">sort</span>(<span class="hljs-built_in">table</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a, b)</span></span> <span class="hljs-keyword">return</span> a.score &lt; b.score <span class="hljs-keyword">end</span>)
+</code></pre>
+<p>作者也不了解这个做法的基本原理 Lua官方文档中提到了这个用法 所以在这做演示</p>
+<p>如果你用到这部分的内容 照着写就好了 如果你待排序的表的关键字段不是<code>score</code> 就把上面代码中的<code>score</code>改成你自己的字段即可</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="145" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.6.4 排序" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.6.4 排序;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.6.4 排序</header>
+
+<p>排行榜完整代码如下</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> player = {
+    {name = <span class="hljs-string">&quot;杀手没有恨&quot;</span>, score = <span class="hljs-number">29</span>},
+    {name = <span class="hljs-string">&quot;欧阳闻奕&quot;</span>, score = <span class="hljs-number">19</span>},
+    {name = <span class="hljs-string">&quot;涟漪云帆&quot;</span>, score = <span class="hljs-number">20</span>},
+    {name = <span class="hljs-string">&quot;忠鉴&quot;</span>, score = <span class="hljs-number">25</span>}
+}
+
+<span class="hljs-built_in">table</span>.<span class="hljs-built_in">sort</span>(player, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a, b)</span></span> <span class="hljs-keyword">return</span> a.score &lt; b.score <span class="hljs-keyword">end</span>)
+
+<span class="hljs-comment">--倒序遍历这个数组并输出玩家和分数(因为会升序排序)</span>
+<span class="hljs-keyword">for</span> i = #player, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">print</span>(player[i].name, player[i].score)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="146" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.7 关于表的元素为引用传递的说明" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.7 关于表的元素为引用传递的说明;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.7 关于表的元素为引用传递的说明</header>
+
+<h1 id="%E5%85%B3%E4%BA%8E%E8%A1%A8%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%BA%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E8%AF%B4%E6%98%8E">关于表的元素为引用传递的说明</h1>
+<p>Lua中的表有一个特性: 所有的表都是引用传递的 这样说可能比较抽象 大家听不懂</p>
+<p>这一节将给出一些说明</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="147" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.7 关于表的元素为引用传递的说明" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.7 关于表的元素为引用传递的说明;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>8.7 关于表的元素为引用传递的说明</header>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> tab1 = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>, <span class="hljs-number">55</span>}
+<span class="hljs-keyword">local</span> tab2 = tab1 <span class="hljs-comment">--这里把tab1指向的表赋值给tab2</span>
+
+<span class="hljs-comment">--尝试索引和改变tab2中的值</span>
+<span class="hljs-built_in">print</span>(tab2[<span class="hljs-number">2</span>])
+tab2[<span class="hljs-number">2</span>] = <span class="hljs-number">24</span>
+<span class="hljs-built_in">print</span>(tab2[<span class="hljs-number">2</span>])
+
+<span class="hljs-comment">--现在去检查tab1中的值 会发现其已经被改变了</span>
+<span class="hljs-built_in">print</span>(tab1[<span class="hljs-number">2</span>])
+</code></pre>
+<p>经过测试 我们发现 <code>tab2</code>的值被改变后 <code>tab1</code>中的值也会被改变 这说明它们两个变量背后是同一个表 而这些变量就是指向这个表的指针 任何的操作都会改变原始的表的内容</p>
+<p>引用就是别名 比如 我的中文网名是<code>欧阳闻奕</code> 英文网名是<code>OWALabuy</code> 而这两个字段都能指我这个人 如果我长胖了 可以说&quot;欧阳闻奕长胖了&quot; 也可以说&quot;OWALabuy长胖了&quot;</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="148" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9. 函数" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3419,7 +4035,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <h1 id="%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%87%BD%E6%95%B0">第九章 函数</h1>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="126" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9. 函数-目录" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="149" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9. 函数-目录" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3439,11 +4055,408 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <li>操作</li>
 <li>变量的作用域</li>
 <li>匿名函数</li>
+<li>递归</li>
 </ol>
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="127" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="150" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.1 简介与构造方式" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.1 简介与构造方式;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.1 简介与构造方式</header>
+
+<h1 id="%E7%AE%80%E4%BB%8B%E4%B8%8E%E6%9E%84%E9%80%A0%E6%96%B9%E5%BC%8F">简介与构造方式</h1>
+<p><strong>函数(function)</strong> 是Lua语言中的一个强大的工具 可以对语句的功能进行抽象 从而简化代码的编写</p>
+<p>函数由关键字<code>function</code>定义 后面有括号用来传递参数 它可以处理数据 执行操作和返回一些值</p>
+<p>函数分为定义和调用 全局函数可以在任何地方调用 而局部函数只能在定义之后调用 使用<code>local</code>可以使一个函数成为局部函数</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="151" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.1 简介与构造方式" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.1 简介与构造方式;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.1 简介与构造方式</header>
+
+<p>一个简单的函数构造如下</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--定义一个函数</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayhi</span><span class="hljs-params">()</span></span> <span class="hljs-comment">--sayhi是函数的名字</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用这个函数</span>
+sayhi()
+</code></pre>
+<p>定义函数时的格式</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">[<span class="hljs-keyword">local</span>] <span class="hljs-function"><span class="hljs-keyword">function</span> 函数名<span class="hljs-params">(参数列表)</span></span>
+    函数体
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>调用时 只需要写函数名和参数即可</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="152" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.2 参数与返回值" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.2 参数与返回值;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.2 参数与返回值</header>
+
+<h1 id="%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC">参数与返回值</h1>
+<p>函数有参数和返回值 参数是调用函数时传递的 返回值是函数返回时带回的 Lua可以有多个返回值 不像C/C++的函数只能有一个返回值</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--定义一个局部函数</span>
+<span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayhi</span><span class="hljs-params">(name)</span></span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hi! &quot;</span> .. name)
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;与&quot;</span> .. name ..<span class="hljs-string">&quot;打招呼了喵&quot;</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用此函数 传递一个参数 并获得返回值</span>
+<span class="hljs-keyword">local</span> msg = sayhi(<span class="hljs-string">&quot;OWALabuy&quot;</span>)
+
+<span class="hljs-comment">--查看其返回值</span>
+<span class="hljs-built_in">print</span>(msg)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="153" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.3 操作" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.3 操作;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.3 操作</header>
+
+<h1 id="%E6%93%8D%E4%BD%9C">操作</h1>
+<p>函数不仅仅可以处理数据 生成返回值 还能执行其他的操作 如调用其他函数 改变其他变量的值等</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> a = <span class="hljs-number">1</span>
+
+<span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a_self_plus</span><span class="hljs-params">()</span></span>
+    a = a + <span class="hljs-number">1</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用这个函数</span>
+a_self_plus()
+
+<span class="hljs-comment">--查看a中的值</span>
+<span class="hljs-built_in">print</span>(a)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="154" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+
+<h1 id="%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">变量的作用域</h1>
+<p>在之前的课程中 我说过 使用<code>local</code>可以定义局部变量 没有这个关键字的变量是全局变量 而在演示文稿中的示例代码 大多是用的局部变量</p>
+<p>我之间没有说过局部变量和全局变量的特性和区别 是因为我们还没有把流程控制 循环和函数学完 现在我们已经完成这一部分的学习 所以在函数这一章开了一小节来说明这个</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="155" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+
+<p>局部变量的作用域是从它被创建到代码块结束 代码块结束后 这些变量就不存在了</p>
+<p>能够访问到变量的代码块范围称为变量的作用域</p>
+<p><code>if</code>语句中的子分支 循环中的循环体 函数中的函数体 都是一个代码块</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">local</span> a = <span class="hljs-number">3</span>
+    <span class="hljs-built_in">print</span>(a)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--在代码块外面尝试访问a 会发现是nil</span>
+<span class="hljs-built_in">print</span>(a)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="156" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+
+<p>在多重代码块中 子代码块能访问父代码块的局部变量 而父代码块无法访问子代码块的局部变量</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">(a)</span></span>
+    <span class="hljs-keyword">local</span> b = a + <span class="hljs-number">1</span> <span class="hljs-comment">--对参数进行访问 参数也是一个局部变量</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
+    <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">local</span> c = b + <span class="hljs-number">1</span> <span class="hljs-comment">--对父代码块中的b进行访问</span>
+        <span class="hljs-built_in">print</span>(c)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-comment">--尝试对子代码块中的c进行访问 无法访问</span>
+    <span class="hljs-built_in">print</span>(c)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--尝试对函数中的局部变量进行访问 会发现无法访问</span>
+<span class="hljs-built_in">print</span>(b)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="157" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+<div class="columns">
+<div>
+<p>在不同层级的代码块中定义相同名字的局部变量 访问的结果会是怎样呢</p>
+<p>运行之后 我们发现 在不同层级定义了同名的局部变量 会访问到离自己最近的那一层级的值</p>
+<p>所以大家如果在子代码块中重复定义了父代码块中的变量 不用担心 子代码块中访问所得的值是正常的 而子代码块的局部变量 父代码块是无法访问到的 所以父代码块中的局部变量的值也可以正常访问</p>
+</div>
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> str = <span class="hljs-string">&quot;我是在主流程中的局部变量&quot;</span>
+<span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> str = <span class="hljs-string">&quot;我是在函数中的局部变量&quot;</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
+        str = <span class="hljs-string">&quot;我是在if语句中的局部变量&quot;</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在if语句中访问&quot;</span>)
+        <span class="hljs-built_in">print</span>(str)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在函数中访问&quot;</span>)
+    <span class="hljs-built_in">print</span>(str)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用这个函数</span>
+awa()
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在主流程中访问&quot;</span>)
+<span class="hljs-built_in">print</span>(str)
+</code></pre>
+</div>
+</div>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="158" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+
+<p>全局变量 不论在哪个代码块中定义 都可以在任何地方访问到</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+    a = <span class="hljs-number">3</span>
+    <span class="hljs-built_in">print</span>(a)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用函数并尝试访问变量</span>
+awa()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在主流程中访问&quot;</span>)
+<span class="hljs-built_in">print</span>(a)
+</code></pre>
+<p>在函数中定义了一个全局变量 调用函数后 变量就会被创建 在全局的任何部分都可以访问了</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="159" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.4 变量的作用域" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.4 变量的作用域;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.4 变量的作用域</header>
+
+<p>全局变量有其缺点 不受约束是方便 但是也是其危险性的来源 定义过多的全局变量可能会导致你不小心就改变了重要的数据的值 造成本不应该出现的错误 所以 在大多数情况下 我们会使用局部变量 将其作用域限制在可控范围内 全局变量主要用来定义重要的常量 为了能在父代码块中访问到子代码块中的局部变量 我们可以扩大其作用域</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> str <span class="hljs-comment">--在父代码块中声明这个局部变量</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
+        str = <span class="hljs-string">&quot;我在if语句中被赋值&quot;</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在if语句中访问&quot;</span>)
+        <span class="hljs-built_in">print</span>(str)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在函数中访问&quot;</span>)
+    <span class="hljs-built_in">print</span>(str)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用这个函数</span>
+awa()
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="160" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.5 匿名函数" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.5 匿名函数;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.5 匿名函数</header>
+
+<h1 id="%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0">匿名函数</h1>
+<p>函数不仅可以放在一个变量中 还可以以匿名的方式定义 作为另一个函数的参数或表的元素 --表的元素也可以是函数</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--匿名函数作为调用函数时的参数 示例</span>
+<span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oper</span><span class="hljs-params">(num1, num2, func)</span></span>
+    <span class="hljs-built_in">print</span>(func(num1, num2))
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用函数</span>
+oper(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a1, a2)</span></span>
+    <span class="hljs-keyword">return</span> a1 + a2
+<span class="hljs-keyword">end</span>)
+</code></pre>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="161" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.5 匿名函数" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.5 匿名函数;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.5 匿名函数</header>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-comment">--匿名函数作为表的元素 示例</span>
+<span class="hljs-keyword">local</span> myTable = {}
+
+myTable[<span class="hljs-number">1</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(str)</span></span>
+    <span class="hljs-built_in">print</span>(str)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--通过表来调用函数</span>
+myTable[<span class="hljs-number">1</span>](<span class="hljs-string">&quot;hello&quot;</span>)
+</code></pre>
+<p>函数的另一种定义方式 以下的两种写法是等价的</p>
+<div class="columns">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> awa = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>)
+<span class="hljs-keyword">end</span>
+
+awa()
+</code></pre>
+</div>
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>)
+<span class="hljs-keyword">end</span>
+
+awa()
+</code></pre>
+</div>
+</div>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="162" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="9.6 递归" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:9.6 递归;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>9.6 递归</header>
+<div class="columns">
+<div>
+<h1 id="%E9%80%92%E5%BD%92">递归</h1>
+<p>递归是在函数中调用自身的操作 它可以将一个大问题拆分成多个小问题 将把计算的值传<strong>递</strong>给子问题 子问题将结果返回给(<strong>归</strong>)主问题 最后一层层把结果返回给原问题</p>
+<p>例如 求一个数的阶乘 阶乘是所有小于等于一个正整数的数的积 阶乘用 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="0.629ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 278 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g></g></svg></mjx-container> 符号表示</p>
+<p>0和1的阶乘都是1 5的阶乘是120 如下</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="27.907ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 12334.9 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(1055.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2111.6,0)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g><g data-mml-node="mo" transform="translate(2833.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(3834,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(4556.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(5556.4,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g><g data-mml-node="mo" transform="translate(6278.7,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(7278.9,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(8001.1,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(9001.3,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(9779.1,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(10834.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container></p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="17.599ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 7778.9 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(1055.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2111.6,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(2833.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(3834,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g><g data-mml-node="mo" transform="translate(4556.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(5556.4,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(6278.7,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(7278.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container></p>
+<p><em>定义说明和代码参考自<a href="https://www.cnblogs.com/east7/p/17017196.html">博客园 楼兰胡杨</a></em></p>
+</div>
+<div>
+<p>我们发现 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="10.434ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 4612 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(1055.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2111.6,0)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g><g data-mml-node="mo" transform="translate(2833.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(3834,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(4334,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g></g></svg></mjx-container> 而 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="10.434ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 4612 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g><g data-mml-node="mo" transform="translate(1055.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2111.6,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="mo" transform="translate(2833.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(3834,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g><g data-mml-node="mo" transform="translate(4334,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g></g></svg></mjx-container></p>
+<p>每一个数的阶乘都是那个数乘以比它小1的数的阶乘 直到1</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursion</span><span class="hljs-params">(num)</span></span>
+    <span class="hljs-keyword">if</span>(num &lt;= <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">then</span>
+        <span class="hljs-comment">--0和1的阶乘是1 直接返回1</span>
+        <span class="hljs-comment">--负数也可以在这里处理掉</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span><span class="hljs-comment">--如果参数不是0或1</span>
+        <span class="hljs-comment">--就用参数乘以参数减1的阶乘</span>
+        <span class="hljs-keyword">return</span> num * recursion(num - <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">--调用函数计算4的阶乘</span>
+<span class="hljs-keyword">local</span> rec = recusion(<span class="hljs-number">4</span>)
+
+<span class="hljs-built_in">print</span>(rec)
+</code></pre>
+</div>
+</div>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="163" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3459,7 +4472,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <h1 id="%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%B8%B8%E6%88%8F%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1">第十章 游戏数据抽象</h1>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="128" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象-目录" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="164" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象-目录" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3478,11 +4491,219 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <li>坐标系统</li>
 <li>ID</li>
 <li>UIN</li>
+<li>实例</li>
 </ol>
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="129" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="165" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10. 游戏数据抽象;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10. 游戏数据抽象</header>
+
+<p>在迷你世界游戏中 提供了一系列接口 用来实现游戏中的功能</p>
+<p>在本章中 会介绍迷你世界中的关于地图逻辑的知识</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="166" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.1 API" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.1 API;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.1 API</header>
+
+<h1 id="api">API</h1>
+<p><strong>API</strong>全称Application Programming Interface 中文名为 <strong>应用程序接口</strong></p>
+<p>它像是一些模块 由宿主软件提供 用户可以在不了解宿主软件的功能具体细节的情况下简单地调用这些功能</p>
+<p>比如在迷你世界中 我想要写脚本使当前游戏时间变成晚上 那么可以使用<code>World:setHours()</code> 在其中填入时间就可以设定了</p>
+<p>这个函数不是我们定义的 是迷你世界定义的 我们可以用它来实现设置地图时间的功能</p>
+<p>可以在<a href="https://dev-wiki.mini1.cn/cyclopdeia?wikiMenuId=3&amp;wikiId=1352">开发者学院</a>中查看所有的API接口</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="167" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.2 坐标系统" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.2 坐标系统;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.2 坐标系统</header>
+
+<h1 id="%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F">坐标系统</h1>
+<p>在迷你世界的地图中 描述一个对象的位置是用坐标实现的 分别有x y z三个坐标轴</p>
+<p>x正方向是东 负方向是西</p>
+<p>y正方向是上 负方向是下</p>
+<p>z正方向是北 负方向是南</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="168" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.3 ID" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.3 ID;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.3 ID</header>
+
+<h1 id="id">ID</h1>
+<p>迷你世界中的每个生物 方块 掉落物 ui组件等 都是由id指定的 id是一个整数</p>
+<p>生物的id分为actor id和具体的id</p>
+<p>其中actorid是种类的id 而地图中每个生物实体都有它们自己独一无二的id</p>
+<p>在脚本编辑界面(仅端游)可查询id 但对于方块和生物等 也可以通过脚本获取它们的id</p>
+<p>在下一章的案例中会介绍获取ID的简要方法</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="169" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.4 UIN" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.4 UIN;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.4 UIN</header>
+
+<h1 id="uin">UIN</h1>
+<p>在迷你世界的地图中 指定玩家需要用到UIN 就是玩家的迷你号</p>
+<p>在所有需要用到迷你号的场合 可以使用0代表房主</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="170" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5 实例" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.5 实例;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.5 实例</header>
+
+<h1 id="%E5%AE%9E%E4%BE%8B">实例</h1>
+<p>为了使大家理解游戏中的逻辑 这里使用几个实例进行演示</p>
+<ol>
+<li>放置方块</li>
+<li>传送玩家</li>
+<li>统计水坑数</li>
+</ol>
+<p>前两个案例会直接实操 在演示文稿中不过多介绍 仅说明问题 而第三个案例比较复杂 在演示文稿中进行简要说明并实操</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="171" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.1 放置方块" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.5.1 放置方块;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.5.1 放置方块</header>
+
+<h2 id="%E6%94%BE%E7%BD%AE%E6%96%B9%E5%9D%97">放置方块</h2>
+<p>在指定的坐标放置指定的方块</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="172" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.2 传送玩家" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.5.2 传送玩家;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.5.2 传送玩家</header>
+
+<h2 id="%E4%BC%A0%E9%80%81%E7%8E%A9%E5%AE%B6">传送玩家</h2>
+<p>将玩家传送到指定的坐标</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="173" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.5.3 统计水坑数;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.5.3 统计水坑数</header>
+
+<h1 id="%E7%BB%9F%E8%AE%A1%E6%B0%B4%E5%9D%91%E6%95%B0">统计水坑数</h1>
+<p>这是一个关于深度优先搜索算法(DFS)和函数递归调用的例子 本应该写在函数那一章 但是想更多地利用游戏中的案例来复现和解决这个问题</p>
+<p>DFS是一个用来遍历图的算法 它是用栈实现的 但是函数递归过程中本来就用到了系统的堆栈 所以我们用函数递归而不是模拟栈来实现</p>
+<p>在一片<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="5.481ex" height="1.077ex" role="img" focusable="false" viewBox="0 -465 2422.4 476"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1100.2,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path></g><g data-mml-node="mi" transform="translate(1822.4,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container>格大小的方形草地上 有几个水坑 连在一起的有水的格子称为一个水坑 现在想要统计这片草地上有多少个水坑</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="174" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:10.5.3 统计水坑数;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>10.5.3 统计水坑数</header>
+
+<p>解决思路:</p>
+<ol>
+<li>创建一个二维的表 每个元素分别对应一个草地上的格子 用来标记已访问的格子</li>
+<li>遍历所有格子 对每个遍历到的格子做以下的操作:
+<ol>
+<li>如果当前格子在二维表中已经被访问 则不执行任何操作</li>
+<li>如果当前格子未被访问 将其标记为已经访问 并检测其方块的种类 若是水 则将水坑的计数+1 并开始dfs</li>
+</ol>
+</li>
+</ol>
+<p>DFS函数 参数是一个坐标(x, z) 操作如下:</p>
+<ol>
+<li>遍历当前坐标的四个方向 检测其方块:
+<ol>
+<li>若已经访问或不是水 不进行任何操作</li>
+<li>若是水 将其标记为已访问 并对该格进行dfs 实现递归</li>
+</ol>
+</li>
+</ol>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="175" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3498,7 +4719,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <h1 id="%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%99%A8">第十一章 事件监听器</h1>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="130" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器-目录" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="176" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器-目录" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3512,12 +4733,234 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <header>11. 事件监听器-目录</header>
 
 <blockquote>
-<p>简介<br />
-两种主流写法</p>
+<ol>
+<li>简介</li>
+<li>两种主流写法</li>
+<li>事件参数</li>
+<li>实例</li>
+</ol>
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="131" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="177" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.1 简介" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.1 简介;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.1 简介</header>
+
+<h1 id="%E7%AE%80%E4%BB%8B">简介</h1>
+<p>在迷你世界中 脚本通常是在事件发生时执行的 比如玩家移动一格 就在聊天框输出一条消息 我们可以用事件监听器将事件和动作绑定到一起</p>
+<p>事件监听器的格式如下</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Game.Start]=]</span>, Game_StartGame)
+</code></pre>
+<p>这是一个函数 会注册一个监听器 函数的第一个参数是要监听的事件(一个字符串) 这里是游戏开始时的事件 第二个参数是一个函数 即此事件发生时应该执行的函数</p>
+<p>事件列表请参考<a href="https://dev-wiki.mini1.cn/cyclopdeia?wikiMenuId=3&amp;wikiId=1353">开发者学院</a></p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="178" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.2 两种主流写法" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.2 两种主流写法;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.2 两种主流写法</header>
+
+<h1 id="%E4%B8%A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E5%86%99%E6%B3%95">两种主流写法</h1>
+<p>对于事件监听器的注册 有两种主流写法 其一是定义一个函数 将函数名放在注册监听器中作为参数 另一个是直接在注册监听器时将匿名函数作为参数 我们用玩家走一步在聊天框中弹出一条消息的例子做演示</p>
+<div class="columns">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+    Chat:sendSystemMsg(<span class="hljs-string">&quot;别跑!&quot;</span>)
+<span class="hljs-keyword">end</span>
+
+ScriptSupportEvent:registerEvent(
+    <span class="hljs-string">[=[Player.MoveOneBlockSize]=]</span>,
+    awa
+)
+</code></pre>
+</div>
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">ScriptSupportEvent:registerEvent(
+    <span class="hljs-string">[=[Player.MoveOneBlockSize]=]</span>,
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
+        Chat:sendSystemMsg(<span class="hljs-string">&quot;别跑!&quot;</span>)
+    <span class="hljs-keyword">end</span>
+)
+</code></pre>
+</div>
+</div>
+<p>这里把注册监听器的函数折着写是因为代码框比较窄 实际上可以写成一行的</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="179" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.3 事件参数" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.3 事件参数;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.3 事件参数</header>
+
+<h1 id="%E4%BA%8B%E4%BB%B6%E5%8F%82%E6%95%B0">事件参数</h1>
+<p>在事件绑定的函数中 我们可以加入一个参数 事件发生 执行这个函数时 会把事件的相关数据封装成一个表 传递到函数的参数中</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">(event)</span></span>
+    <span class="hljs-keyword">local</span> result, name = Player.getNickName(event.eventobjid)
+    Chat:sendSystemMsg(<span class="hljs-string">&quot;别跑!&quot;</span> .. name)
+<span class="hljs-keyword">end</span>
+
+ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBlockSize]=]</span>, awa)
+</code></pre>
+<p>刚刚我们使用了那个表的<code>eventobjid</code>字段 那是触发事件的对象id 也就是玩家的迷你号 在官方提供的文档中 我们可以查阅每个事件带的参数</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="180" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4 实例" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.4 实例;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.4 实例</header>
+
+<h1 id="%E5%AE%9E%E4%BE%8B-1">实例</h1>
+<p>这里提供一些关于事件监听器的案例来让大家更深入了解本章内容</p>
+<ol>
+<li>指令传送</li>
+<li>点击方块获得其信息</li>
+<li>改变玩家属性</li>
+<li>玩家输入&quot;id&quot; 获取手持物品的信息</li>
+</ol>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="181" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.1 指令传送" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.4.1 指令传送;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.4.1 指令传送</header>
+
+<h2 id="%E6%8C%87%E4%BB%A4%E4%BC%A0%E9%80%81">指令传送</h2>
+<p>之前我们在正则表达式(7.3.3)中写了指令传送相关的逻辑 修改此代码使其能够真正在游戏中运行</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="182" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.2 点击方块获得其信息" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.4.2 点击方块获得其信息;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.4.2 点击方块获得其信息</header>
+
+<h2 id="%E7%82%B9%E5%87%BB%E6%96%B9%E5%9D%97%E8%8E%B7%E5%BE%97%E5%85%B6%E4%BF%A1%E6%81%AF">点击方块获得其信息</h2>
+<p>在游戏中 我们想要获得一个方块的id 需要去查方块表 编写脚本实现: 玩家点击一个方块 在聊天框输入此方块的名称 id 坐标 data</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="183" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.3 改变玩家属性" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.4.3 改变玩家属性;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.4.3 改变玩家属性</header>
+
+<h2 id="%E6%94%B9%E5%8F%98%E7%8E%A9%E5%AE%B6%E5%B1%9E%E6%80%A7">改变玩家属性</h2>
+<p>玩家手持特定道具 输入a b c改变玩家的不同属性 如移动速度 模型大小 血量等</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="184" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.4 玩家输入&quot;id&quot;获取手持物品的信息" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:11.4.4 玩家输入&quot;id&quot;获取手持物品的信息;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>11.4.4 玩家输入&quot;id&quot;获取手持物品的信息</header>
+
+<h2 id="%E7%8E%A9%E5%AE%B6%E8%BE%93%E5%85%A5id%E8%8E%B7%E5%8F%96%E6%89%8B%E6%8C%81%E7%89%A9%E5%93%81%E7%9A%84%E4%BF%A1%E6%81%AF">玩家输入&quot;id&quot;获取手持物品的信息</h2>
+<p>这个留给大家当作练习</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="185" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="写在最后" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:写在最后;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>写在最后</header>
+
+<h2 id="%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E">写在最后</h2>
+<p>我们的课程告一段落 大家应该已经了解了迷你世界Lua脚本的大致用法 希望大家学以致用 早日摆脱冗长臃肿的触发器 解放你的创造力!</p>
+<p>在人生的旅途中 总会遇到一些困难和问题 保持求知好学是使自己更优秀的原动力 遇到问题可以通过查找文档 尝试探索等方法解决 实在无法解决的问题可以询问他人</p>
+<p>遇到问题最不可取的方式是发泄情绪 陷入不良情绪只会使自己状态更糟糕 对问题的解决没有任何帮助 所以请把精力放在思考和寻找解决问题的方法上</p>
+<p>我只是带新手入门的布道人 更广阔的世界需要你们自己探索 希望你们能有自己的收获</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="186" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="致谢" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:致谢;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>致谢</header>
+
+<h1 id="%E6%84%9F%E8%B0%A2%E8%A7%82%E7%9C%8B">感谢观看!</h1>
+<p><strong>异端组织/世方府工作室出品</strong></p>
+<p>请关注轨心夕(杀手没有恨) 迷你号139246171</p>
+<p>遇到问题请联系作者邮箱owalabuy@gmail.com</p>
+<p>会在时间精力容许的范围内尽可能解答大家的问题</p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="187" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -3530,5 +4973,12 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 ;"><footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=null!==(t=this.shadowRoot.querySelector(`div[${e}]`))&&void 0!==t?t:void 0;const l=this.svg;this.svg=null!==(o=null===(s=this.wrapper)||void 0===s?void 0:s.querySelector(`svg[${i}]`))&&void 0!==o?o:void 0,this.svg!==l&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=null!==(a=null===(r=this.svg)||void 0===r?void 0:r.querySelector(`span[${n}]`))&&void 0!==a?a:void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){var t,e,i,n,s,o,r;let a=Math.ceil(null!==(e=null===(t=this.containerSize)||void 0===t?void 0:t.width)&&void 0!==e?e:0);const l=Math.ceil(null!==(n=null===(i=this.containerSize)||void 0===i?void 0:i.height)&&void 0!==n?n:0);void 0!==this.dataset.downscaleOnly&&(a=Math.max(a,null!==(o=null===(s=this.wrapperSize)||void 0===s?void 0:s.width)&&void 0!==o?o:0));const c=null===(r=this.svg)||void 0===r?void 0:r.querySelector(":scope > foreignObject");if(null==c||c.setAttribute("width",`${a}`),null==c||c.setAttribute("height",`${l}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${a} ${l}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=a<=0||l<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const o=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this.attachShadow({mode:"open"})}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_update(){const t=i?`<style>:host { ${i} }</style>`:"";let e="<slot></slot>";const{autoScaling:n}=this.dataset;if(void 0!==n){e=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===n?"data-downscale-only":""}>${e}</marp-auto-scaling>`}this.shadowRoot.innerHTML=t+e}};let r;const a=Symbol();let l;const c="marpitSVGPolyfill:setZoomFactor,",d=Symbol(),g=Symbol();const h=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[u]:[],i={then:e=>(t?(async()=>{if(void 0===l){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise((t=>{i.addEventListener("load",(()=>t()))}));i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),l=e.getImageData(5,5,1,1).data[3]<128}return l})().then((t=>{null==e||e(t?[u]:[])})):null==e||e([]),i)};return Object.assign(e,i)};let p,m;function u(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(c)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(m=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,o,r;t.style.transform||(t.style.transform="translateZ(0)");const a=i||m||t.currentScale||1;p!==a&&(p=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(r=null===(o=n.y)||void 0===o?void 0:o.baseVal.value)&&void 0!==r?r:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${c}${n}`,"null"===window.origin?"*":window.origin)}))}function v({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[d])return t[d];let e=!0;const i=()=>{e=!1,delete t[d]};Object.defineProperty(t,d,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await h()}finally{s=!0}})();const o=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(o)};return o(),i}(e);return t?(i(),()=>{}):i}p=1,m=void 0;const b=Symbol(),w=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();null!=r||(r=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is")),r&&a!==HTMLElement?i||customElements.define(s,o(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,o(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[b])return e[b];const i=v({target:e}),n=()=>{i(),delete e[b]},l=Object.assign(n,{cleanup:n,update:()=>w(e)});return Object.defineProperty(e,b,{configurable:!0,value:l}),l},y=document.currentScript;w(y?y.getRootNode():document)}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>Add this anywhere in your Markdown file</p></div><div class="bespoke-marp-note" data-index="115" tabindex="0"><p>玩家会输入很多内容 所以需要做一个过滤 如果不是命令 就不让其进入到逻辑中</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@3.4.0/lib/bespoke.js.LICENSE.txt */
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>Add this anywhere in your Markdown file</p></div><div class="bespoke-marp-note" data-index="115" tabindex="0"><p>玩家会输入很多内容 所以需要做一个过滤 如果不是命令 就不让其进入到逻辑中</p></div><div class="bespoke-marp-note" data-index="151" tabindex="0"><p>把函数比作一台机器 参数就是进去的原料 返回值就是机器的产品 机器不仅能生产产品(处理数据) 还能进行一些操作</p></div><div class="bespoke-marp-note" data-index="158" tabindex="0"><p>既然全局变量不受作用域的约束 那么 为什么不全部使用全局变量呢</p></div><div class="bespoke-marp-note" data-index="186" tabindex="0"><p>&lt;div class=&quot;columns&quot;&gt;
+&lt;div&gt;
+
+&lt;/div&gt;
+&lt;div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@3.4.0/lib/bespoke.js.LICENSE.txt */
 !function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),i={},a=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){i[e]=(i[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(i[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){o[e]&&(n&&l("deactivate",a(n,t)),n=o[e],l("activate",a(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;l(e>0?"next":"prev",a(n,t))&&c(r,t)},u={off:s,on:function(e,t){return(i[e]||(i[e]=[])).push(t),s.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return o.indexOf(n);l("slide",a(o[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){l("destroy",a(n,e)),i={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u}},n=e(t);const r=document.body,o=(...e)=>history.replaceState(...e),i="presenter",a="next",s=["",i,a],l="bespoke-marp-",c=`data-${l}`,d=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const i=e.toString();return`${t}//${n}${r}${i?"?":""}${i}${o}`},u=()=>r.dataset.bespokeView,f=e=>new URLSearchParams(location.search).get(e),m=(e,t={})=>{var n;const r={location,setter:o,...t},i=new URLSearchParams(r.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?i.set(t,n):i.delete(t)}try{r.setter({...null!==(n=window.history.state)&&void 0!==n?n:{}},"",d(i,r.location))}catch(e){console.error(e)}},g=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),p=e=>{try{return localStorage.getItem(e)}catch(e){return null}},v=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},h=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},y=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},b=e=>{e.parent.classList.add(`${l}parent`),e.slides.forEach((e=>e.classList.add(`${l}slide`))),e.on("activate",(t=>{const n=`${l}active`,r=t.slide,o=r.classList,i=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),y(e,!0)})),o.add(n),y(r,!1),i){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},w=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${c}fragment`,(i?"":"in")+"active");const a=`${c}current-fragment`;t===r&&n===o?e.setAttribute(a,"current"):e.removeAttribute(a)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:i=!0})=>{if(i){if(r(1))return o(t,n+1),!1;const i=t+1;e.fragments[i]&&o(i,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const i=e.fragments[t+1];i&&o(t+1,i.length-1)}})),e.on("prev",(({fragment:i=!0})=>{if(r(-1)&&i)return o(t,n-1),!1;const a=t-1;e.fragments[a]&&o(a,e.fragments[a].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},x=document,k=()=>!(!x.fullscreenEnabled&&!x.webkitFullscreenEnabled),$=()=>!(!x.fullscreenElement&&!x.webkitFullscreenElement),E=e=>{e.fullscreen=()=>{k()&&(async()=>{return $()?null===(e=x.exitFullscreen||x.webkitExitFullscreen)||void 0===e?void 0:e.call(x):((e=x.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!k()||(e.fullscreen(),t.preventDefault())}))},L=`${l}inactive`,S=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let i;const a=()=>{i&&clearTimeout(i),i=setTimeout((()=>{r.add(L),o()}),e),r.contains(L)&&(r.remove(L),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,a);setTimeout(a,0)},P=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],_=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(P.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},T=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${c}load`,e?"":"hideable")}}))},I=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(i=>{let a=!1;const s=(e,t)=>{e&&(a=a||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==i.deltaX&&s(i.target,"X"),0!==i.deltaY&&s(i.target,"Y"),a)return;i.preventDefault();const l=Math.sqrt(i.deltaX**2+i.deltaY**2);if(void 0!==i.wheelDelta){if(void 0===i.webkitForce&&Math.abs(i.wheelDelta)<40)return;if(i.deltaMode===i.DOM_DELTA_PIXEL&&l<4)return}else if(i.deltaMode===i.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const c=Date.now()-o<e,d=l<=n;if(n=l,c||d)return;let u;(i.deltaX>0||i.deltaY>0)&&(u="next"),(i.deltaX<0||i.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())}))},M=(e=`.${l}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${c}osc=${JSON.stringify(e)}]`).forEach(n)};return k()||n("fullscreen",(e=>e.style.display="none")),g||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>y(t,!1))),e.on("marp-inactive",(()=>y(t,!0))),k()&&(e=>{for(const t of["","webkit"])x.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",k()&&$())))))}},O=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),i=Number.parseInt(n,10)+1;i>=e.fragments[o].length&&(o+=1,i=0),e.slide(o,{fragment:i})}}))};var A=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let C=e=>String(e).replace(/[&<>"']/g,(e=>`&${D[e]};`)),D={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},N="dangerouslySetInnerHTML",B={className:"class",htmlFor:"for"},q={};function K(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==N&&(r+=` ${B[e]?B[e]:C(e)}="${C(t[e])}"`);r+=">"}if(-1===A.indexOf(e)){if(t[N])r+=t[N].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===q[e]?e:C(e)}r+=e?`</${e}>`:""}return q[r]=!0,r}const j=({children:e})=>K(null,null,...e),F=`${l}presenter-`,V={container:`${F}container`,dragbar:`${F}dragbar-container`,next:`${F}next`,nextContainer:`${F}next-container`,noteContainer:`${F}note-container`,noteWrapper:`${F}note-wrapper`,noteButtons:`${F}note-buttons`,infoContainer:`${F}info-container`,infoPage:`${F}info-page`,infoPageText:`${F}info-page-text`,infoPagePrev:`${F}info-page-prev`,infoPageNext:`${F}info-page-next`,noteButtonsBigger:`${F}note-bigger`,noteButtonsSmaller:`${F}note-smaller`,infoTime:`${F}info-time`,infoTimer:`${F}info-timer`},U=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=V.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",K(j,null,K("div",{class:V.nextContainer},K("iframe",{class:V.next,src:"?view=next"})),K("div",{class:V.dragbar}),K("div",{class:V.noteContainer},K("div",{class:V.noteWrapper}),K("div",{class:V.noteButtons},K("button",{class:V.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),K("button",{class:V.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),K("div",{class:V.infoContainer},K("div",{class:V.infoPage},K("button",{class:V.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),K("span",{class:V.infoPageText}),K("button",{class:V.infoPageNext,tabindex:"-1",title:"Next"},"Next")),K("time",{class:V.infoTime,title:"Current time"}),K("time",{class:V.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(V.dragbar).addEventListener("mousedown",(()=>{t=!0,r(V.dragbar).classList.add("active")})),window.addEventListener("mouseup",(()=>{t=!1,r(V.dragbar).classList.remove("active")})),window.addEventListener("mousemove",(e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(V.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)})),r(V.nextContainer).addEventListener("click",(()=>e.next()));const n=r(V.next),o=(i=n,(e,t)=>{var n;return null===(n=i.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var i;n.addEventListener("load",(()=>{r(V.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>o(e,t)))}));const a=document.querySelectorAll(".bespoke-marp-note");a.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(V.noteWrapper).appendChild(e)})),e.on("activate",(()=>a.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide())))));let s=0;const l=e=>{s=Math.max(-5,s+e),r(V.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},c=()=>l(1),d=()=>l(-1),u=r(V.noteButtonsBigger),f=r(V.noteButtonsSmaller);u.addEventListener("click",(()=>{u.blur(),c()})),f.addEventListener("click",(()=>{f.blur(),d()})),document.addEventListener("keydown",(e=>{"+"===e.key&&c(),"-"===e.key&&d()}),!0),e.on("activate",(({index:t})=>{r(V.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const m=r(V.infoPagePrev),g=r(V.infoPageNext);m.addEventListener("click",(t=>{m.blur(),e.prev({fragment:!t.shiftKey})})),g.addEventListener("click",(t=>{g.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1}));let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),i=t(n/1e3/60%60),a=t(n/36e5%24);r(V.infoTime).textContent=e.toLocaleTimeString(),r(V.infoTimer).textContent=`${a}:${i}:${o}`};v(),setInterval(v,250),r(V.infoTimer).addEventListener("click",(()=>{p=new Date}))})(e)},X=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:H},presenterUrl:{enumerable:!0,get:R}}),g&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function H(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,F+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function R(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),d(e)}const W=e=>{const t=u();return t===a&&e.appendChild(document.createElement("span")),{"":X,[i]:U,[a]:O}[t]},J=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},Y=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},z=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?Y(f("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:i,slides:a}=e,s=o(0,r(t,a.length-1)),l=o(0,r(n||0,i[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((()=>{var t,r;if(location.hash){const[o]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(o))return(null!==(t=Y(o))&&void 0!==t?t:1)-1;const i=document.getElementById(o)||document.querySelector(`a[name="${CSS.escape(o)}"]`);if(i){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(i)){const t=null===(r=e.fragments)||void 0===r?void 0:r[o],a=i.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||m({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),m({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},G=(e={})=>{var t;const n=e.key||(null===(t=window.history.state)||void 0===t?void 0:t.marpBespokeSyncKey)||Math.random().toString(36).slice(2),r=`bespoke-marp-sync-${n}`;var i;i={marpBespokeSyncKey:n},m({},{setter:(e,...t)=>o({...e,...i},...t)});const a=()=>{const e=p(r);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=a(),n={...t,...e(t)};return v(r,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:n,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===r&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{t=!0}}}));const o=()=>{const{reference:e}=a();void 0===e||e<=1?h(r):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),o()})),e.on("destroy",o)}},{PI:Q,abs:Z,sqrt:ee,atan2:te}=Math,ne={passive:!0},re=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,i=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?i(e[0]):void 0}),ne),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=i(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ee(Z(n)**2+Z(o)**2),r.radian=te(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+Q)%(2*Q)-Q;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),ne)},oe=new Map;oe.clear(),oe.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ie={both:"",outgoing:"outgoing-",incoming:"incoming-"},ae={forward:"",backward:"-backward"},se=e=>`--marp-bespoke-transition-animation-${e}`,le=e=>`--marp-transition-${e}`,ce=se("name"),de=se("duration"),ue=e=>new Promise((t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",(()=>o(n))),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const i=getComputedStyle(r).getPropertyValue(le("duration"));i&&(n.defaultDuration=i),((e,t)=>{requestAnimationFrame((()=>{e.style.animationPlayState="running",requestAnimationFrame((()=>t(void 0)))}))})(r,o)})),fe=async e=>oe.has(e)?oe.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ie))for(const[i,a]of Object.entries(ae)){const s=`marp-${o}transition${a}-${e}`;n.push(ue(s).then((e=>{t[i]=t[i]||{},t[i][r]=e?{...e,name:s}:void 0})))}return Promise.all(n).then((()=>t))})(e).then((t=>(oe.set(e,t),t))),me=e=>Object.values(e).flatMap(Object.values).every((e=>!e)),ge=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[ce]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[se("direction")]="reverse"),e}})();return!o&&n?ge(e,{type:t,backward:!1}):o||{[ce]:"__bespoke_marp_transition_no_animation__"}},pe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch(e){}},ve="_tSId",he="_tA",ye="bespoke-marp-transition-warming-up",be=window.matchMedia("(prefers-reduced-motion: reduce)"),we="__bespoke_marp_transition_reduced_outgoing__",xe="__bespoke_marp_transition_reduced_incoming__",ke={forward:{both:void 0,incoming:{name:xe},outgoing:{name:we}},backward:{both:void 0,incoming:{name:xe},outgoing:{name:we}}},$e=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{const t=[...new Set(e).values()];return Promise.all(t.map((e=>fe(e)))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap((e=>[e.dataset.transition,e.dataset.transitionBack].flatMap((e=>{const t=pe(e);return[null==t?void 0:t.name,(null==t?void 0:t.builtinFallback)?`__builtin__${t.name}`:void 0]})).filter((e=>!!e))))).then((()=>{document.querySelectorAll("style").forEach((e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,(e=>e.slice(0,-1)+"!important"+e.slice(-1)))}))}));const r=(n,{back:r,cond:o})=>i=>{var a;const s=t();if(s)return!!i[he]||!("object"!=typeof s||(s.skipTransition(),!i.forSync));if(!o(i))return!0;const l=e.slides[e.slide()],c=()=>{var e;return null!==(e=i.back)&&void 0!==e?e:r},d="data-transition"+(c()?"-back":""),u=l.querySelector(`section[${d}]`);if(!u)return!0;const f=pe(null!==(a=u.getAttribute(d))&&void 0!==a?a:void 0);return!f||((async(e,{builtinFallback:t=!0}={})=>{let n=await fe(e);if(me(n)){if(!t)return;return n=await fe(`__builtin__${e}`),me(n)?void 0:n}return n})(f.name,{builtinFallback:f.builtinFallback}).then((e=>{if(!e){t(!0);try{n(i)}finally{t(!1)}return}let r=e;be.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=ke);const o=document.getElementById(ve);o&&o.remove();const a=document.createElement("style");a.id=ve,document.head.appendChild(a),((e,t)=>{const n=[`:root{${le("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{var n,o,i;const a=(null===(n=e[t].both)||void 0===n?void 0:n.defaultDuration)||(null===(o=e[t].outgoing)||void 0===o?void 0:o.defaultDuration)||(null===(i=e[t].incoming)||void 0===i?void 0:i.defaultDuration);return"forward"===t?a:a||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${de}:${o};}`);const i=e=>Object.entries(e).map((([e,t])=>`${e}:${t};`)).join("");return n.push(`::view-transition-old(root){${i(ge(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${i(ge(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:f.duration}).forEach((e=>{var t;return null===(t=a.sheet)||void 0===t?void 0:t.insertRule(e)}));const s=document.documentElement.classList;s.add(ye);let l=!1;const d=()=>{l||(n(i),l=!0,s.remove(ye))},u=()=>{t(!1),a.remove(),s.remove(ye)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(u)}catch(e){console.error(e),d(),u()}})),!1)};e.on("prev",r((t=>e.prev({...t,[he]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[he]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[he]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let Ee;const Le=()=>(void 0===Ee&&(Ee="wakeLock"in navigator&&navigator.wakeLock),Ee),Se=async()=>{const e=Le();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Pe=async()=>{if(!Le())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Se()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Se(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=f("view");r.dataset.bespokeView=e===a||e===i?e:""})();const t=(e=>{const t=f(e);return m({[e]:void 0}),t})("sync")||void 0;n.from(e,((...e)=>{const t=s.findIndex((e=>u()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],G({key:t})],[[1,1,1],W(e)],[[1,1,0],_],[[1,1,1],b],[[1,0,0],S()],[[1,1,1],T],[[1,1,1],z({history:!1})],[[1,1,0],I()],[[1,1,0],E],[[1,0,0],J],[[1,1,0],re()],[[1,0,0],M()],[[1,0,0],$e],[[1,1,1],w],[[1,1,0],Pe]))})()}();</script></body></html>
