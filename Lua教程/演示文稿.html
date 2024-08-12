@@ -2079,6 +2079,7 @@ E --不饿--&gt; G(睡觉去)
 
 <span class="hljs-built_in">print</span>(name)
 </code></pre>
+
 <p>在上面的例子中 如果<code>my_name</code>为空值 <code>name</code>就会使用默认值&quot;无名者&quot;</p>
 <p>使用<code>or</code>而不是使用<code>if</code>判断后赋默认值有这些好处:</p>
 <ul>
@@ -2284,6 +2285,7 @@ C --没有完成--&gt; B
 
 <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;我跑完了&quot;</span>)
 </code></pre>
+
 <p>这里与<code>while</code>循环不同 是从1到5 而且循环会自动将变量自加 无需手动去写</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">i = i + <span class="hljs-number">1</span>
 </code></pre>
@@ -2381,6 +2383,7 @@ C --没有完成--&gt; B
 <span class="hljs-keyword">do</span>
     <span class="hljs-comment">--在1到200这个区间生成一个随机数 并存放在变量中</span>
     <span class="hljs-keyword">local</span> ranNum = <span class="hljs-built_in">math</span>.<span class="hljs-built_in">random</span>(<span class="hljs-number">1</span>, <span class="hljs-number">200</span>)
+    <span class="hljs-built_in">print</span>(ranNum)
 
     <span class="hljs-comment">--如果生成的数大于100 使用break退出循环</span>
     <span class="hljs-keyword">if</span>(ranNum &gt; <span class="hljs-number">100</span>)
@@ -2800,6 +2803,7 @@ lower_b = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">
 <span class="hljs-keyword">local</span> substr = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(str, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)
 <span class="hljs-built_in">print</span>(substr)
 </code></pre>
+
 <h3 id="%E6%9F%A5%E6%89%BE">查找</h3>
 <p>string.find(str, substr, i, plain) <code>str</code>为原字符串 <code>substr</code>为待查找的子串 <code>i</code>代表起始位置 <code>plain</code>为一个布尔值 若为<code>false</code> 则使用正则表达式匹配 <code>i</code> 和<code>plain</code>可省略</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
@@ -2822,6 +2826,8 @@ lower_b = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">
 <span class="hljs-keyword">local</span> alt_location = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">find</span>(str, <span class="hljs-string">&quot;Alt&quot;</span>)
 <span class="hljs-built_in">print</span>(alt_location) <span class="hljs-comment">--这会输出一个数字</span>
 </code></pre>
+
+<p><strong>Vim是最好用的文本编辑器!!!</strong></p>
 <h3 id="%E5%8F%8D%E8%BD%AC">反转</h3>
 <p>使用string.reverse(str)来反转一个字符串</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.revrese(<span class="hljs-string">&quot;hello&quot;</span>))
@@ -2872,7 +2878,9 @@ lower_b = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">
 <p>string.format 和C语言中的printf()很像 它的第一个参数为格式 后面的参数会替换格式串中的占位符</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> a, b = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>
 str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;%d+%d=%d&quot;</span>, a, b, a + b)
+<span class="hljs-built_in">print</span>(str)
 </code></pre>
+
 <p>运行以上代码 会输出: 1+2=3</p>
 <p><code>%d</code>是一个占位符 代表一个整数  在上面的例子中 格式串中有三个<code>%d</code> 在执行格式化的时候 后面的三个变量中的数值会被放到占位符的位置 形成完整的字符串</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
@@ -3331,6 +3339,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
     <span class="hljs-built_in">print</span>(order, x, y, z)
 <span class="hljs-keyword">end</span>
 </code></pre>
+
 <p>加入了<code>%-?</code>来匹配0或1个-号 就可以匹配负数了</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3452,6 +3461,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 
 <span class="hljs-built_in">print</span>(myArray[<span class="hljs-number">3</span>]) <span class="hljs-comment">--输出32</span>
 </code></pre>
+
 <p><em>lua中的数组索引是从1开始的</em></p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3478,6 +3488,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <span class="hljs-comment">--可以通过双重索引来访问到其中的元素</span>
 <span class="hljs-built_in">print</span>(myArray[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>]) <span class="hljs-comment">--输出77</span>
 </code></pre>
+
 <p>可以根据需求创建三维甚至更多维度的数组</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3561,17 +3572,19 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <p>在使用字符串作为索引时 需要用<code>[]</code>和<code>&quot;&quot;</code>把字段框起来 显得非常臃肿 且输入麻烦</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="131" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="131" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="8.2 字符串作为索引时的语法糖" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
-" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--theme:default;--style:.columns {
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:8.2 字符串作为索引时的语法糖;--theme:default;--style:.columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 ;">
+<header>8.2 字符串作为索引时的语法糖</header>
+
 <p>Lua中提供了一种语法糖来简化这个操作</p>
 <br />
 <div class="columns">
@@ -3599,6 +3612,7 @@ str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">form
 <span class="hljs-built_in">print</span>(person.skill[<span class="hljs-number">2</span>])
 <span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;skill&quot;</span>][<span class="hljs-number">2</span>])
 </code></pre>
+
 <p><strong>注意: 这个语法糖仅在索引为字符串时可用 它是固定的 而如果要使用变量中的数据为表的成员创索引或访问数据 应该加上<code>[]</code></strong></p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3677,9 +3691,10 @@ myTable[<span class="hljs-number">2</span>] = <span class="hljs-literal">nil</sp
     dog = {<span class="hljs-string">&quot;owner&quot;</span>, <span class="hljs-string">&quot;love&quot;</span>, <span class="hljs-string">&quot;eat&quot;</span>, <span class="hljs-string">&quot;walking&quot;</span>}
 }
 
-<span class="hljs-built_in">print</span>(#myTable) <span class="hljs-comment">--是2 因为其中有cat和dog两个元素</span>
-<span class="hljs-built_in">print</span>(#myTable.cat) <span class="hljs-comment">--是3 cat是一个表 其中有三个字符串作为它的元素</span>
+<span class="hljs-built_in">print</span>(#myTable) <span class="hljs-comment">--是0 因为它里面的cat和dog都是键值形式的元素</span>
+<span class="hljs-built_in">print</span>(#myTable.cat) <span class="hljs-comment">--是3 cat是一个数组 其中有三个字符串作为它的元素</span>
 </code></pre>
+
 <p>注意 如果数组形式的表中有断点 这个方法会返回断点处的值 而不是完整的表长 但是一般的数组形式的表不会出现断点 不考虑这个问题</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3725,6 +3740,7 @@ myTable[<span class="hljs-number">2</span>] = <span class="hljs-literal">nil</sp
     <span class="hljs-built_in">print</span>(myArray[i])
 <span class="hljs-keyword">end</span>
 </code></pre>
+
 <p>以上例子展示了遍历一维数组 并输出每个元素 如果要遍历更高维的数组 可以使用循环嵌套</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -3763,6 +3779,7 @@ t.a1 = <span class="hljs-string">&quot;a1&quot;</span>
 </code></pre>
 </div>
 </div>
+
 <p>以上的例子中 表包括数组部分和键值对部分 添加了<code>a1</code>字段作为它的键值对部分</p>
 <p><code>ipairs</code>和普通的for循环一样 只会遍历数组部分 而不会遍历到哈希部分(键值部分)</p>
 <p>而<code>pairs</code>可以遍历完整的表 逐个读取元素的键和值 不管是不是数字作为索引</p>
@@ -4015,6 +4032,7 @@ tab2[<span class="hljs-number">2</span>] = <span class="hljs-number">24</span>
 <span class="hljs-comment">--现在去检查tab1中的值 会发现其已经被改变了</span>
 <span class="hljs-built_in">print</span>(tab1[<span class="hljs-number">2</span>])
 </code></pre>
+
 <p>经过测试 我们发现 <code>tab2</code>的值被改变后 <code>tab1</code>中的值也会被改变 这说明它们两个变量背后是同一个表 而这些变量就是指向这个表的指针 任何的操作都会改变原始的表的内容</p>
 <p>引用就是别名 比如 我的中文网名是<code>欧阳闻奕</code> 英文网名是<code>OWALabuy</code> 而这两个字段都能指我这个人 如果我长胖了 可以说&quot;欧阳闻奕长胖了&quot; 也可以说&quot;OWALabuy长胖了&quot;</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
@@ -4101,6 +4119,7 @@ tab2[<span class="hljs-number">2</span>] = <span class="hljs-number">24</span>
 <span class="hljs-comment">--调用这个函数</span>
 sayhi()
 </code></pre>
+
 <p>定义函数时的格式</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua">[<span class="hljs-keyword">local</span>] <span class="hljs-function"><span class="hljs-keyword">function</span> 函数名<span class="hljs-params">(参数列表)</span></span>
     函数体
@@ -4237,6 +4256,8 @@ a_self_plus()
     <span class="hljs-built_in">print</span>(c)
 <span class="hljs-keyword">end</span>
 
+<span class="hljs-comment">--调用函数 使函数内的代码执行 随便给个参数就可以了</span>
+awa(<span class="hljs-number">1</span>)
 <span class="hljs-comment">--尝试对函数中的局部变量进行访问 会发现无法访问</span>
 <span class="hljs-built_in">print</span>(b)
 </code></pre>
@@ -4265,7 +4286,8 @@ a_self_plus()
 <span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
     <span class="hljs-keyword">local</span> str = <span class="hljs-string">&quot;我是在函数中的局部变量&quot;</span>
     <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
-        str = <span class="hljs-string">&quot;我是在if语句中的局部变量&quot;</span>
+    <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">local</span> str = <span class="hljs-string">&quot;我是在if语句中的局部变量&quot;</span>
         <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在if语句中访问&quot;</span>)
         <span class="hljs-built_in">print</span>(str)
     <span class="hljs-keyword">end</span>
@@ -4307,6 +4329,7 @@ awa()
 <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在主流程中访问&quot;</span>)
 <span class="hljs-built_in">print</span>(a)
 </code></pre>
+
 <p>在函数中定义了一个全局变量 调用函数后 变量就会被创建 在全局的任何部分都可以访问了</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
@@ -4327,6 +4350,7 @@ awa()
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">awa</span><span class="hljs-params">()</span></span>
     <span class="hljs-keyword">local</span> str <span class="hljs-comment">--在父代码块中声明这个局部变量</span>
     <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)
+    <span class="hljs-keyword">then</span>
         str = <span class="hljs-string">&quot;我在if语句中被赋值&quot;</span>
         <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;在if语句中访问&quot;</span>)
         <span class="hljs-built_in">print</span>(str)
@@ -4389,6 +4413,7 @@ myTable[<span class="hljs-number">1</span>] = <span class="hljs-function"><span 
 <span class="hljs-comment">--通过表来调用函数</span>
 myTable[<span class="hljs-number">1</span>](<span class="hljs-string">&quot;hello&quot;</span>)
 </code></pre>
+
 <p>函数的另一种定义方式 以下的两种写法是等价的</p>
 <div class="columns">
 <div>
@@ -4448,7 +4473,7 @@ awa()
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-comment">--调用函数计算4的阶乘</span>
-<span class="hljs-keyword">local</span> rec = recusion(<span class="hljs-number">4</span>)
+<span class="hljs-keyword">local</span> rec = recursion(<span class="hljs-number">4</span>)
 
 <span class="hljs-built_in">print</span>(rec)
 </code></pre>
@@ -4456,7 +4481,44 @@ awa()
 </div>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="163" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="163" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="特别篇 寻找代码的错误" data-theme="default" data-style=".columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:特别篇 寻找代码的错误;--theme:default;--style:.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+;">
+<header>特别篇 寻找代码的错误</header>
+
+<h2 id="%E5%AF%BB%E6%89%BE%E4%BB%A3%E7%A0%81%E7%9A%84%E9%94%99%E8%AF%AF">寻找代码的错误</h2>
+<p>代码出现问题 无法运行 分为以下两种错误情况:</p>
+<div class="columns">
+<div>
+<h3 id="%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF">语法错误</h3>
+<p>这样的错误在写代码的阶段就能被发现 VSC的Lua诊断插件可以帮助你排除这些错误 这类错误中 常见的错误如下</p>
+<ol>
+<li>逗号写成中文的全角标点</li>
+<li>变量名不合法</li>
+<li>关键字漏写 如<code>then</code> <code>do</code>等</li>
+</ol>
+</div>
+<div>
+<h3 id="%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF">逻辑错误</h3>
+<p>这类的错误不是由语法引起的 它要在代码运行阶段才会显露出来 轻则出现警告消息 重则导致程序无法运行并报错 报错信息是英文 看不懂自行谷歌翻译 这类错误举例:</p>
+<ol>
+<li>爆栈 stack overflow</li>
+<li>表索引空值</li>
+<li>调用了不存在的函数</li>
+</ol>
+</div>
+</div>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="164" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4472,7 +4534,7 @@ awa()
 <h1 id="%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%B8%B8%E6%88%8F%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1">第十章 游戏数据抽象</h1>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="164" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象-目录" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="165" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象-目录" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4496,7 +4558,7 @@ awa()
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="165" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="166" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10. 游戏数据抽象" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4513,7 +4575,7 @@ awa()
 <p>在本章中 会介绍迷你世界中的关于地图逻辑的知识</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="166" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.1 API" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="167" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.1 API" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4534,7 +4596,7 @@ awa()
 <p>可以在<a href="https://dev-wiki.mini1.cn/cyclopdeia?wikiMenuId=3&amp;wikiId=1352">开发者学院</a>中查看所有的API接口</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="167" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.2 坐标系统" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="168" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.2 坐标系统" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4554,7 +4616,7 @@ awa()
 <p>z正方向是北 负方向是南</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="168" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.3 ID" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="169" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.3 ID" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4575,7 +4637,7 @@ awa()
 <p>在下一章的案例中会介绍获取ID的简要方法</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="169" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.4 UIN" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="170" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.4 UIN" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4593,7 +4655,7 @@ awa()
 <p>在所有需要用到迷你号的场合 可以使用0代表房主</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="170" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5 实例" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="171" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5 实例" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4616,7 +4678,7 @@ awa()
 <p>前两个案例会直接实操 在演示文稿中不过多介绍 仅说明问题 而第三个案例比较复杂 在演示文稿中进行简要说明并实操</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="171" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.1 放置方块" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="172" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.1 放置方块" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4633,7 +4695,7 @@ awa()
 <p>在指定的坐标放置指定的方块</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="172" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.2 传送玩家" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="173" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.2 传送玩家" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4650,7 +4712,7 @@ awa()
 <p>将玩家传送到指定的坐标</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="173" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="174" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4669,7 +4731,7 @@ awa()
 <p>在一片<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="5.481ex" height="1.077ex" role="img" focusable="false" viewBox="0 -465 2422.4 476"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1100.2,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path></g><g data-mml-node="mi" transform="translate(1822.4,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container>格大小的方形草地上 有几个水坑 连在一起的有水的格子称为一个水坑 现在想要统计这片草地上有多少个水坑</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="174" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="175" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="10.5.3 统计水坑数" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4703,7 +4765,7 @@ awa()
 </ol>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="175" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="176" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4719,7 +4781,7 @@ awa()
 <h1 id="%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%99%A8">第十一章 事件监听器</h1>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="176" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器-目录" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="177" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11. 事件监听器-目录" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4742,7 +4804,7 @@ awa()
 </blockquote>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="177" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.1 简介" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="178" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.1 简介" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4764,7 +4826,7 @@ awa()
 <p>事件列表请参考<a href="https://dev-wiki.mini1.cn/cyclopdeia?wikiMenuId=3&amp;wikiId=1353">开发者学院</a></p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="178" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.2 两种主流写法" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="179" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.2 两种主流写法" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4804,7 +4866,7 @@ ScriptSupportEvent:registerEvent(
 <p>这里把注册监听器的函数折着写是因为代码框比较窄 实际上可以写成一行的</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="179" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.3 事件参数" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="180" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.3 事件参数" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4829,7 +4891,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>刚刚我们使用了那个表的<code>eventobjid</code>字段 那是触发事件的对象id 也就是玩家的迷你号 在官方提供的文档中 我们可以查阅每个事件带的参数</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="180" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4 实例" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="181" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4 实例" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4852,7 +4914,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 </ol>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="181" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.1 指令传送" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="182" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.1 指令传送" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4869,7 +4931,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>之前我们在正则表达式(7.3.3)中写了指令传送相关的逻辑 修改此代码使其能够真正在游戏中运行</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="182" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.2 点击方块获得其信息" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="183" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.2 点击方块获得其信息" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4886,7 +4948,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>在游戏中 我们想要获得一个方块的id 需要去查方块表 编写脚本实现: 玩家点击一个方块 在聊天框输入此方块的名称 id 坐标 data</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="183" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.3 改变玩家属性" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="184" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.3 改变玩家属性" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4903,7 +4965,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>玩家手持特定道具 输入a b c改变玩家的不同属性 如移动速度 模型大小 血量等</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="184" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.4 玩家输入&quot;id&quot;获取手持物品的信息" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="185" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="11.4.4 玩家输入&quot;id&quot;获取手持物品的信息" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4920,7 +4982,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>这个留给大家当作练习</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="185" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="写在最后" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="186" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="写在最后" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4940,7 +5002,7 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>我只是带新手入门的布道人 更广阔的世界需要你们自己探索 希望你们能有自己的收获</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="186" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="致谢" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="187" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="致谢" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -4960,20 +5022,31 @@ ScriptSupportEvent:registerEvent(<span class="hljs-string">[=[Player.MoveOneBloc
 <p>会在时间精力容许的范围内尽可能解答大家的问题</p>
 <footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="187" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-theme="default" data-style=".columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="188" data-class="invert" data-footer="MiniWorld Lua Script Tutorial by OWALabuy" data-header="鸣谢-工具及资源" data-theme="default" data-style=".columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
-" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--theme:default;--style:.columns {
+" lang="zh-CN" class="invert" style="--class:invert;--footer:MiniWorld Lua Script Tutorial by OWALabuy;--header:鸣谢-工具及资源;--theme:default;--style:.columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
-;"><footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
+;">
+<header>鸣谢-工具及资源</header>
+
+<p><strong>在本教程制作过程中 使用到以下工具及资源</strong></p>
+<p><strong>OS</strong>: Ubuntu Linux</p>
+<p><strong>演示文稿</strong>: markdown, marp, mermaid, firefox</p>
+<p><strong>视频制作</strong>: OBS Studio, Kdenlive</p>
+<p><strong>文本编辑及网页浏览</strong>: Vim, Visual Studio Code, w3m, oh-my-zsh</p>
+<p><strong>程序运行环境</strong>: Lua, 迷你世界(通过Wine)</p>
+<p><strong>参考资料</strong>: 博客园, 菜鸟教程, 迷你世界开发者学院</p>
+<p><strong>向以上工具/资源的作者表示由衷的感谢</strong></p>
+<footer>MiniWorld Lua Script Tutorial by OWALabuy</footer>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=null!==(t=this.shadowRoot.querySelector(`div[${e}]`))&&void 0!==t?t:void 0;const l=this.svg;this.svg=null!==(o=null===(s=this.wrapper)||void 0===s?void 0:s.querySelector(`svg[${i}]`))&&void 0!==o?o:void 0,this.svg!==l&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=null!==(a=null===(r=this.svg)||void 0===r?void 0:r.querySelector(`span[${n}]`))&&void 0!==a?a:void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){var t,e,i,n,s,o,r;let a=Math.ceil(null!==(e=null===(t=this.containerSize)||void 0===t?void 0:t.width)&&void 0!==e?e:0);const l=Math.ceil(null!==(n=null===(i=this.containerSize)||void 0===i?void 0:i.height)&&void 0!==n?n:0);void 0!==this.dataset.downscaleOnly&&(a=Math.max(a,null!==(o=null===(s=this.wrapperSize)||void 0===s?void 0:s.width)&&void 0!==o?o:0));const c=null===(r=this.svg)||void 0===r?void 0:r.querySelector(":scope > foreignObject");if(null==c||c.setAttribute("width",`${a}`),null==c||c.setAttribute("height",`${l}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${a} ${l}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=a<=0||l<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const o=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this.attachShadow({mode:"open"})}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_update(){const t=i?`<style>:host { ${i} }</style>`:"";let e="<slot></slot>";const{autoScaling:n}=this.dataset;if(void 0!==n){e=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===n?"data-downscale-only":""}>${e}</marp-auto-scaling>`}this.shadowRoot.innerHTML=t+e}};let r;const a=Symbol();let l;const c="marpitSVGPolyfill:setZoomFactor,",d=Symbol(),g=Symbol();const h=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[u]:[],i={then:e=>(t?(async()=>{if(void 0===l){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise((t=>{i.addEventListener("load",(()=>t()))}));i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),l=e.getImageData(5,5,1,1).data[3]<128}return l})().then((t=>{null==e||e(t?[u]:[])})):null==e||e([]),i)};return Object.assign(e,i)};let p,m;function u(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(c)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(m=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,o,r;t.style.transform||(t.style.transform="translateZ(0)");const a=i||m||t.currentScale||1;p!==a&&(p=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(r=null===(o=n.y)||void 0===o?void 0:o.baseVal.value)&&void 0!==r?r:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${c}${n}`,"null"===window.origin?"*":window.origin)}))}function v({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[d])return t[d];let e=!0;const i=()=>{e=!1,delete t[d]};Object.defineProperty(t,d,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await h()}finally{s=!0}})();const o=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(o)};return o(),i}(e);return t?(i(),()=>{}):i}p=1,m=void 0;const b=Symbol(),w=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();null!=r||(r=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is")),r&&a!==HTMLElement?i||customElements.define(s,o(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,o(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[b])return e[b];const i=v({target:e}),n=()=>{i(),delete e[b]},l=Object.assign(n,{cleanup:n,update:()=>w(e)});return Object.defineProperty(e,b,{configurable:!0,value:l}),l},y=document.currentScript;w(y?y.getRootNode():document)}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>Add this anywhere in your Markdown file</p></div><div class="bespoke-marp-note" data-index="115" tabindex="0"><p>玩家会输入很多内容 所以需要做一个过滤 如果不是命令 就不让其进入到逻辑中</p></div><div class="bespoke-marp-note" data-index="151" tabindex="0"><p>把函数比作一台机器 参数就是进去的原料 返回值就是机器的产品 机器不仅能生产产品(处理数据) 还能进行一些操作</p></div><div class="bespoke-marp-note" data-index="158" tabindex="0"><p>既然全局变量不受作用域的约束 那么 为什么不全部使用全局变量呢</p></div><div class="bespoke-marp-note" data-index="186" tabindex="0"><p>&lt;div class=&quot;columns&quot;&gt;
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>Add this anywhere in your Markdown file</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>自行演示</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="47" tabindex="0"><p>自行演示</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="54" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="60" tabindex="0"><p>有演示 应该做更多演示 如将条件换成false</p></div><div class="bespoke-marp-note" data-index="62" tabindex="0"><p>有演示 需要将条件改成false</p></div><div class="bespoke-marp-note" data-index="64" tabindex="0"><p>有演示 需要补充其他情况</p></div><div class="bespoke-marp-note" data-index="66" tabindex="0"><p>有演示 需要补充</p></div><div class="bespoke-marp-note" data-index="71" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="74" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="75" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="76" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="77" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="78" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="85" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="86" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="87" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="89" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="90" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="91" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="94" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="98" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="101" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="104" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="105" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="106" tabindex="0"><p>有演示</p><p>自行写代码演示</p></div><div class="bespoke-marp-note" data-index="108" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="109" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="111" tabindex="0"><p>累了不想演示了 讲解一下就好了 这一节</p></div><div class="bespoke-marp-note" data-index="113" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="115" tabindex="0"><p>玩家会输入很多内容 所以需要做一个过滤 如果不是命令 就不让其进入到逻辑中</p></div><div class="bespoke-marp-note" data-index="120" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="124" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="125" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="126" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="127" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="130" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="131" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="132" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="133" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="135" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="136" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="139" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="140" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="141" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="142" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="144" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="146" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="150" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="151" tabindex="0"><p>把函数比作一台机器 参数就是进去的原料 返回值就是机器的产品 机器不仅能生产产品(处理数据) 还能进行一些操作</p></div><div class="bespoke-marp-note" data-index="152" tabindex="0"><p>有演示</p></div><div class="bespoke-marp-note" data-index="154" tabindex="0"><p>有演示 1</p></div><div class="bespoke-marp-note" data-index="155" tabindex="0"><p>有演示 2</p></div><div class="bespoke-marp-note" data-index="156" tabindex="0"><p>有演示 3</p></div><div class="bespoke-marp-note" data-index="157" tabindex="0"><p>有演示 4</p></div><div class="bespoke-marp-note" data-index="158" tabindex="0"><p>既然全局变量不受作用域的约束 那么 为什么不全部使用全局变量呢</p><p>有演示 5</p></div><div class="bespoke-marp-note" data-index="160" tabindex="0"><p>以上两个都有演示</p></div><div class="bespoke-marp-note" data-index="161" tabindex="0"><p>有演示 有错误 是故意的  教他们认识代码错误</p></div><div class="bespoke-marp-note" data-index="187" tabindex="0"><p>&lt;div class=&quot;columns&quot;&gt;
 &lt;div&gt;
 
 &lt;/div&gt;
