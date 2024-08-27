@@ -1,14 +1,11 @@
-local function bubble_sort(array)
-    for i = 1, #array - 1 do
-        for j = i, #array - 1 do
-            if(array[j] > array[j + 1])then
-                local temp = array[j]
-                array[j] = array[j + 1]
-                array[j + 1] = temp
-            end
+local function get_min_num(array)
+    local min = 1
+    for i = 2, #array do
+        if(array[i] < array[min]) then
+            min = i
         end
-        print(table.concat(array, " "))
     end
+    return min
 end
 
 --取得用户之输入 并将其做为一个数组... 干脆封装成一个函数
@@ -31,6 +28,13 @@ end
 --取得用户之输入
 local myArray = get_input()
 
---调用排序函数
-bubble_sort(myArray)
+--调用函数找到这个数组中最小的数
+local min_index = get_min_num(myArray)
 
+--将其与第一个元素交换
+local temp = myArray[1]
+myArray[1] = myArray[min_index]
+myArray[min_index] = temp
+
+--输出 用空格隔开
+print(table.concat(myArray, " "))

@@ -1,12 +1,23 @@
-local function bubble_sort(array)
+local function selection_sort(array)
     for i = 1, #array - 1 do
-        for j = i, #array - 1 do
-            if(array[j] > array[j + 1])then
-                local temp = array[j]
-                array[j] = array[j + 1]
-                array[j + 1] = temp
+        local min = i --最小值的下标
+
+        --遍历未排序的元素
+        for j = i + 1, #array do
+            --找到最小值
+            if(array[j] < array[min]) then
+                min = j
             end
         end
+
+        --交换两个变量
+        if(min ~= i) then
+            local temp = array[min]
+            array[min] = array[i]
+            array[i] = temp
+        end
+
+        --输出本趟排序的结果
         print(table.concat(array, " "))
     end
 end
@@ -32,5 +43,4 @@ end
 local myArray = get_input()
 
 --调用排序函数
-bubble_sort(myArray)
-
+selection_sort(myArray)

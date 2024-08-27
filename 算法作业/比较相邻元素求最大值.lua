@@ -1,13 +1,11 @@
-local function bubble_sort(array)
+local function bubble(array)
     for i = 1, #array - 1 do
-        for j = i, #array - 1 do
-            if(array[j] > array[j + 1])then
-                local temp = array[j]
-                array[j] = array[j + 1]
-                array[j + 1] = temp
-            end
+        if(array[i] > array[i + 1]) then
+            --交换两个数
+            local temp = array[i]
+            array[i] = array[i + 1]
+            array[i + 1] = temp
         end
-        print(table.concat(array, " "))
     end
 end
 
@@ -31,6 +29,8 @@ end
 --取得用户之输入
 local myArray = get_input()
 
---调用排序函数
-bubble_sort(myArray)
+--对其进行一次泡泡
+bubble(myArray)
 
+--用空格隔开输出
+print(table.concat(myArray, " "))
