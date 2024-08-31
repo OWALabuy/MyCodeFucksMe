@@ -1,6 +1,6 @@
 local function bubble_sort(array)
     for i = 1, #array - 1 do
-        for j = 0, #array - 1 do
+        for j = 1, #array - 1 do
             if(array[j] > array[j + 1])then
                 local temp = array[j]
                 array[j] = array[j + 1]
