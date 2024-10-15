@@ -17,6 +17,7 @@ local function BinaryHeap(arr)
         parentIndex = math.floor(i / 2)
         currentIndex = i
 
+        --这里要先比较一下两个子节点的值 再与父节点比较 不然无法确定哪个子节点更小
         while arr[parentIndex] ~= nil and arr[currentIndex] > arr[parentIndex] do
             Exchange(arr, currentIndex, parentIndex)
             currentIndex = parentIndex
