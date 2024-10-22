@@ -1,9 +1,7 @@
 -- 取得用户输入的模块
 function get_input()
-    -- 取输入的数组(此时还是字符串)
     local str_arr = io.read()
 
-    -- 处理这个字符串 把所有的数都拎出来 并塞进一个数组里面
     local myArray = {}
     for s in string.gmatch(str_arr, "%d+") do
         s = tonumber(s)
@@ -12,62 +10,68 @@ function get_input()
     return myArray
 end
 
-local function BinaryHeap(arr)
-    for i = #arr, 1, -1 do
-        parentIndex = math.floor(i / 2)
-        currentIndex = i
-
-        --这里要先比较一下两个子节点的值 再与父节点比较 不然无法确定哪个子节点更小
-        while arr[parentIndex] ~= nil and arr[currentIndex] > arr[parentIndex] do
-            Exchange(arr, currentIndex, parentIndex)
-            currentIndex = parentIndex
-            parentIndex = math.floor(currentIndex / 2)
-        end
-    end
-
-    local lastIndex = #arr
-    for i = 1, lastIndex do
-        local left = currentIndex * 2
-        if left >= lastIndex then
-            break
-        end
-
-        local right = currentIndex * 2 + 1
-        if right >= lastIndex then
-            targetIndex = left
-        else
-            targetIndex = GetMaxChild(arr, left, right)
-        end
-
-        if(arr[currentIndex] < arr[targetIndex])
-        then
-            Exchange(arr, currentIndex, targetIndex)   
-        else
-            break
-        end
-
-        currentIndex = targetIndex
-    end
-    lastIndex = lastIndex - 1
-end
-
---查找最小子节点
-function GetMaxChild(arr, left, right)
-    if arr[left] >= arr[right] then
-        return left
-    end
-    return right
-end
-
---交换数组中的两个元素 参数是数组和两个元素的索引
+-- 交换数组中的两个元素
 function Exchange(arr, a, b)
     local temp = arr[a]
     arr[a] = arr[b]
     arr[b] = temp
 end
 
+-- 查找最大子节点
+function GetMaxChild(arr, left, right)
+    if arr[right] ~= nil and arr[right] > arr[left] then
+        return right
+    else
+        return left
+    end
+end
+
+-- 调整堆的函数，使得堆满足最大堆的性质
+local function Heapify(arr, currentIndex, heapSize)
+    local left = currentIndex * 2
+    local right = currentIndex * 2 + 1
+    local largest = currentIndex
+
+    -- 比较左右子节点，找出最大的
+    if left <= heapSize and arr[left] > arr[largest] then
+        largest = left
+    end
+    if right <= heapSize and arr[right] > arr[largest] then
+        largest = right
+    end
+
+    -- 如果子节点比父节点大，交换它们并递归调用 Heapify
+    if largest ~= currentIndex then
+        Exchange(arr, currentIndex, largest)
+        Heapify(arr, largest, heapSize)
+    end
+end
+
+-- 构建最大堆
+local function BuildMaxHeap(arr)
+    local heapSize = #arr
+    -- 从最后一个非叶子节点开始向上调整
+    for i = math.floor(heapSize / 2), 1, -1 do
+        Heapify(arr, i, heapSize)
+    end
+end
+
+-- 堆排序函数
+local function HeapSort(arr)
+    BuildMaxHeap(arr)
+    local heapSize = #arr
+    -- 逐步将堆顶元素和堆的最后一个元素交换，并调整堆
+    for i = heapSize, 2, -1 do
+        Exchange(arr, 1, i)
+        heapSize = heapSize - 1
+        Heapify(arr, 1, heapSize)
+    end
+end
+
+-- 测试数据
 --local arr = {3, 1, 4, 2, 5}
 local arr = get_input()
-BinaryHeap(arr)
+HeapSort(arr)
 
 print(table.concat(arr, ", "))
+
