@@ -20,10 +20,17 @@ local function replace_judge(id, data)
     return false
 end
 
+--创建一个矩形区域
+local result,areaid=Area:createAreaRectByRange({x=0,y=7,z=0},{x=5,y=10,z=5})
+Areaid_list.area1 = areaid
+
+--存放全局区域id的一个表
+Areaid_list = {}
+
 --玩家离开区域 eventobjid areaid
 ScriptSupportEvent:registerEvent([=[Player.AreaOut]=], function(e)
     --判断区域的id是不是指定的id (你把这里改成你地图中指定的区域id 或者存储区域id的变量)
-    if e.areaid ~= 12345 then
+    if e.areaid ~= Areaid_list.area1 then
         return 0 --不是指定的id 结束这个函数
     end
     --获取指定区域的起点和终点坐标

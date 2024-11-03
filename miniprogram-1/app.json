@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/picture/picture",
+    "pages/video/video",
+    "pages/map/map",
+    "pages/guest/guest"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#7AB2D3",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#ff7c91",
+    "borderStyle":"white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/invite.png",
+        "selectedIconPath": "images/invite.png",
+        "text": "邀请函"
+      },
+      {
+        "pagePath": "pages/picture/picture",
+        "iconPath": "images/divorce.png",
+        "selectedIconPath": "images/divorce.png",
+        "text": "照片"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "iconPath": "images/video.png",
+        "selectedIconPath": "images/video.png",
+        "text": "过去的日子"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "iconPath": "images/map.png",
+        "selectedIconPath": "images/map.png",
+        "text": "典礼地点"
+      },
+      {
+        "pagePath": "pages/guest/guest",
+        "iconPath": "images/guest.png",
+        "selectedIconPath": "images/guest.png",
+        "text": "宾客信息"
+      }
+    ]
+  },
+  "style": "v2",
+  "requireBackgroundModes": ["audio"]
+}

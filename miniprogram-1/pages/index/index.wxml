@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="player player-{{isPlayingMusic ? 'play' : 'pause'}}" bindtap="play">
+  <image src="/images/music_icon.png" />
+  <image src="/images/music_play.png" />
+</view>
+<image class="bg" src="/images/bg_1.png"/>
+<view class="content">
+  <image class="divorce-ceremony" src="/images/divorce_ceremony.png" />
+  <view class="content-title">邀请函</view>
+  <view class="content-avatar">
+    <image src="/images/avatar.jpeg" />
+  </view>
+  <view class="content-info">
+    <view class="content-name" bindtap="callHusband">
+      <image src="/images/tel.png" />
+      <view>小汪</view>
+      <view>怨夫</view>
+    </view>
+    <view class="content-divorce">
+      <image src="/images/divorce_1.png" />
+    </view>
+    <view class="content-name" bindtap="callWife">
+      <image src="/images/tel.png" />
+      <view>小喵</view>
+      <view>怨妻</view>
+    </view>
+  </view>
+  <view class="content-address">
+    <view>我们诚邀您参加我们的离婚典礼</view>
+    <view>时间: 2015年6月10日</view>
+    <view>地点: 北京市海淀区XX路XX酒店</view>
+  </view>
+</view>
