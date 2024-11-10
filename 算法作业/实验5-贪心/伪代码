@@ -1,0 +1,33 @@
+函数 MakeChange(n)
+    定义一个数组 denominations = [100, 50, 20, 10, 5, 2, 1]  // 各种面值
+    定义一个空数组 result 用于存储每种面值的张数
+
+    对于 denominations 中的每一个面值 denom:
+        计算张数 count = n 整除 denom  // 尽可能多地使用当前面值
+        将 count 添加到 result 中  // 记录该面值的张数
+        更新剩余金额 n = n 取余 denom  // 计算找零金额中剩余的部分
+
+    返回 result  // 返回各面值张数的数组
+
+函数 DisplayChange(n)
+    调用 MakeChange(n) 得到 result 数组
+    定义数组 denominations = [100, 50, 20, 10, 5, 2, 1]  // 各种面值
+
+    输出 "贪心法最终的找零钱方案为："
+    对于 result 中的每个 count 和相应的面值 denominations[i]:
+        输出 denominations[i]元 count张
+
+主程序
+    读取用户输入的找零金额 n
+    调用 DisplayChange(n)
+
+
+贪心选择策略
+尽可能选择最大面值进行找零
+
+使用条件
+具有贪心选择性质: 整体最优解(或近似最优解)可以通过一系列局部最优解的选择达到
+具有最优子结构性质: 整体最优解包含子问题的最优解
+
+求解过程
+将问题分为若干个子问题 每个子问题选择其最优解 合并起来得到(近似的)整体最优解"
