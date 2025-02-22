@@ -14,5 +14,7 @@ ScriptSupportEvent:registerEvent([=[Actor.Projectier.Hit]=], function(e)
     then
         --传送事件玩家
         Actor:setPosition(e.helperobjid, e.x, e.y, e.z)
+        --我觉得还是得加入更真实的东西 比如扣血和特效
+        --但是现在对迷你的防御机制不太了解了...
     end
 end)
