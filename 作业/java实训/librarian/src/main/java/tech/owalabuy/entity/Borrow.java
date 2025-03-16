@@ -1,12 +1,13 @@
 package tech.owalabuy.entity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Reader{
+public class Borrow {
     private String email;
-    private String name;
-    private int max_borrow_days;
-    private boolean lost_flag;
+    private String isbn;
+    private String borrow_date;
+    private String return_date;
 }

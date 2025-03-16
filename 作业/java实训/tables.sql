@@ -21,6 +21,12 @@ create table Borrow(
     borrow_date date not null,
     return_date date,
     primary key (email, isbn),
-    foreign key email references Reader(email) on delete cascade,
-    foreign key isbn references Book(isbn) on delete cascade
+    foreign key (email) references Reader(email) on delete cascade,
+    foreign key (isbn) references Book(isbn) on delete cascade
+);
+
+create table Staff(
+    staff_id varchar(10) not null,
+    name varchar(255) not null,
+    role varchar(50) not null
 );
