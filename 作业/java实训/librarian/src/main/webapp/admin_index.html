@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理系统 - 图书管理员</title>
+    <link rel="stylesheet" href="styles.css">  <!-- 你可以在这个CSS文件里添加样式 -->
+</head>
+<body>
+    <header>
+        <h1>欢迎来到图书管理系统</h1>
+        <nav>
+            <ul>
+                <li><a href="#book-management">图书管理</a></li>
+                <li><a href="#borrow-management">借阅管理</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 图书管理模块 -->
+        <section id="book-management">
+            <h2>图书管理</h2>
+            <form>
+                <label for="add-title">书名：</label>
+                <input type="text" id="add-title" placeholder="书名"><br><br>
+                <label for="add-author">作者：</label>
+                <input type="text" id="add-author" placeholder="作者"><br><br>
+                <label for="add-isbn">ISBN：</label>
+                <input type="text" id="add-isbn" placeholder="ISBN"><br><br>
+                <label for="add-price">价格：</label>
+                <input type="number" id="add-price" placeholder="价格"><br><br>
+                <label for="add-stock">总库存：</label>
+                <input type="number" id="add-stock" placeholder="总库存"><br><br>
+                <button type="submit">新增图书</button>
+            </form>
+
+            <h3>修改 / 删除图书</h3>
+            <form>
+                <label for="modify-isbn">请输入要修改或删除的ISBN：</label>
+                <input type="text" id="modify-isbn" placeholder="ISBN">
+                <button type="button" onclick="loadBookData()">加载书籍信息</button>
+            </form>
+            <div id="modify-book-info">
+                <p>修改书籍信息</p>
+                <label for="modify-title">书名：</label>
+                <input type="text" id="modify-title"><br><br>
+                <label for="modify-author">作者：</label>
+                <input type="text" id="modify-author"><br><br>
+                <label for="modify-price">价格：</label>
+                <input type="number" id="modify-price"><br><br>
+                <label for="modify-stock">总库存：</label>
+                <input type="number" id="modify-stock"><br><br>
+                <button type="button">修改</button>
+                <button type="button">删除</button>
+            </div>
+        </section>
+
+        <!-- 借阅管理模块 -->
+        <section id="borrow-management">
+            <h2>借阅管理</h2>
+            <form>
+                <label for="borrow-email">读者邮箱：</label>
+                <input type="email" id="borrow-email" placeholder="读者邮箱"><br><br>
+                <label for="borrow-isbn">书籍ISBN：</label>
+                <input type="text" id="borrow-isbn" placeholder="书籍ISBN"><br><br>
+                <label for="borrow-date">借阅日期：</label>
+                <input type="date" id="borrow-date"><br><br>
+                <button type="submit">借阅</button>
+            </form>
+
+            <h3>查询借阅情况</h3>
+            <form>
+                <label for="borrow-query-email">读者邮箱：</label>
+                <input type="email" id="borrow-query-email" placeholder="读者邮箱"><br><br>
+                <button type="button" onclick="searchBorrowedBooks()">查询借阅书籍</button>
+            </form>
+
+            <table id="borrowed-books">
+                <thead>
+                    <tr>
+                        <th>书名</th>
+                        <th>借阅日期</th>
+                        <th>归还日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 动态填充借阅记录 -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>图书管理系统 &copy; 2025</p>
+    </footer>
+</body>
+</html>
+

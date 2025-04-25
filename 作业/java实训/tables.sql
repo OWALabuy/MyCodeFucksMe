@@ -16,11 +16,12 @@ create table Reader(
 );
 
 create table Borrow(
+    id int primary key auto_increment,
     email varchar(255) not null,
     isbn varchar(17) not null,
     borrow_date date not null,
     return_date date,
-    primary key (email, isbn),
+    --primary key (email, isbn),
     foreign key (email) references Reader(email) on delete cascade,
     foreign key (isbn) references Book(isbn) on delete cascade
 );

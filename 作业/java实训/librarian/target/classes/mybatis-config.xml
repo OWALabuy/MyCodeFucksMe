@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties" />
+    <!--
+    <typeAliases>
+        <typeAlias type="tech.owalabuy.Reader" alias="Reader" />
+    </typeAliases>
+    -->
+    <environments default="development">
+        <environment id="development">
+        <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/bms" />
+                <property name="username" value="owalabuy" />
+                <property name="password" value="owalabuyawa" />
+            </dataSource>
+        </environment>
+    </environments>
+    <typeHandlers>
+        <typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />
+    </typeHandlers>
+
+    <mappers>
+        <mapper resource="mybatis/mapper/ReaderMapper.xml"/>
+        <mapper resource="mybatis/mapper/BookMapper.xml"/>
+        <mapper resource="mybatis/mapper/BorrowMapper.xml"/>
+        <mapper resource="mybatis/mapper/StaffMapper.xml"/>
+    </mappers>
+
+</configuration>
+

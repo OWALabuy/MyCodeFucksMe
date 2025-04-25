@@ -1,0 +1,44 @@
+<!-- src/main/resources/mapper/BorrowMapper.xml -->
+<mapper namespace="tech.owalabuy.DAO.BorrowDAO">
+
+    <!-- 根据 ID 获取借阅记录 -->
+    <select id="getBorrowById" resultType="tech.owalabuy.entity.Borrow">
+        SELECT id, email, isbn, borrow_date, return_date
+        FROM Borrow
+        WHERE id = #{id}
+    </select>
+
+    <!-- 获取某个读者的所有借阅记录 -->
+    <select id="getBorrowsByEmail" resultType="tech.owalabuy.entity.Borrow">
+        SELECT id, email, isbn, borrow_date, return_date
+        FROM Borrow
+        WHERE email = #{email}
+    </select>
+
+    <!-- 新增借阅记录 -->
+    <insert id="insertBorrow" parameterType="tech.owalabuy.entity.Borrow">
+        INSERT INTO Borrow (email, isbn, borrow_date, return_date)
+        VALUES (#{email}, #{isbn}, #{borrow_date}, #{return_date})
+    </insert>
+
+    <!-- 更新借阅记录 -->
+    <update id="updateBorrow" parameterType="tech.owalabuy.entity.Borrow">
+        UPDATE Borrow 
+        sET email = #{email}, isbn = #{isbn}, borrow_date = #{borrow_date}, return_date = #{return_date}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据 ID 删除借阅记录 -->
+    <delete id="deleteBorrowById" parameterType="int">
+        DELETE FROM Borrow  WHERE id = #{id}
+    </delete>
+
+    <!-- 查询某个图书的借阅记录 -->
+    <select id="getBorrowsByIsbn" resultType="tech.owalabuy.entity.Borrow">
+        SELECT id, email, isbn, borrow_date, return_date
+        FROM Borrow 
+        WHERE isbn = #{isbn}
+    </select>
+
+</mapper>
+

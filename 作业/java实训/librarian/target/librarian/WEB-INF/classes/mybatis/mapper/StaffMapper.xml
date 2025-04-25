@@ -1,0 +1,36 @@
+<!-- src/main/resources/mapper/StaffMapper.xml -->
+<mapper namespace="tech.owalabuy.DAO.StaffDAO">
+
+    <!-- 根据员工 ID 获取员工信息 -->
+    <select id="getStaffById" resultType="tech.owalabuy.entity.Staff">
+        SELECT staff_id, name, role
+        FROM Staff
+        WHERE staff_id = #{staffId}
+    </select>
+
+    <!-- 获取所有员工信息 -->
+    <select id="getAllStaff" resultType="tech.owalabuy.entity.Staff">
+        SELECT staff_id, name, role
+        FROM Staff
+    </select>
+
+    <!-- 新增员工 -->
+    <insert id="insertStaff" parameterType="tech.owalabuy.entity.Staff">
+        INSERT INTO Staff (staff_id, name, role)
+        VALUES (#{staff_id}, #{name}, #{role})
+    </insert>
+
+    <!-- 更新员工信息 -->
+    <update id="updateStaff" parameterType="tech.owalabuy.entity.Staff">
+        UPDATE Staff
+        SET name = #{name}, role = #{role}
+        WHERE staff_id = #{staff_id}
+    </update>
+
+    <!-- 删除员工 -->
+    <delete id="deleteStaffById" parameterType="String">
+        DELETE FROM Staff WHERE staff_id = #{staff_id}
+    </delete>
+
+</mapper>
+

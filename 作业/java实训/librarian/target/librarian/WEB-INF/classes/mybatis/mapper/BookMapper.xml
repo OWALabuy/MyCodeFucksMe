@@ -1,0 +1,51 @@
+<!-- src/main/resources/mapper/BookMapper.xml -->
+<mapper namespace="tech.owalabuy.DAO.BookDAO">
+
+    <!-- 根据 ISBN 获取图书 -->
+    <select id="getBookByIsbn" resultType="tech.owalabuy.entity.Book">
+        SELECT isbn, title, author, price, total_stock, available_stock, borrow_count
+        FROM Book
+        WHERE isbn = #{isbn}
+    </select>
+
+    <!-- 获取所有图书 -->
+    <select id="getAllBooks" resultType="tech.owalabuy.entity.Book">
+        SELECT isbn, title, author, price, total_stock, available_stock, borrow_count
+        FROM Book
+    </select>
+
+    <!-- 新增图书 -->
+    <insert id="insertBook" parameterType="tech.owalabuy.entity.Book">
+        INSERT INTO Book (isbn, title, author, price, total_stock, available_stock, borrow_count)
+        VALUES (#{isbn}, #{title}, #{author}, #{price}, #{total_stock}, #{available_stock}, #{borrow_count})
+    </insert>
+
+    <!-- 更新图书信息 -->
+    <update id="updateBook" parameterType="tech.owalabuy.entity.Book">
+        UPDATE Book
+        SET title = #{title}, author = #{author}, price = #{price},
+            total_stock = #{total_stock}, available_stock = #{available_stock}, borrow_count = #{borrow_count}
+        WHERE isbn = #{isbn}
+    </update>
+
+    <!-- 删除图书 -->
+    <delete id="deleteBookByIsbn" parameterType="String">
+        DELETE FROM Book WHERE isbn = #{isbn}
+    </delete>
+
+    <!-- 根据作者获取图书 -->
+    <select id="getBooksByAuthor" resultType="tech.owalabuy.entity.Book">
+        SELECT isbn, title, author, price, total_stock, available_stock, borrow_count
+        FROM Book
+        WHERE author = #{author}
+    </select>
+
+    <!-- 更新图书的库存 -->
+    <update id="updateStock" parameterType="Map">
+        UPDATE Book
+        SET available_stock = #{availableStock}
+        WHERE isbn = #{isbn}
+    </update>
+
+</mapper>
+

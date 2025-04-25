@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="tech.owalabuy.DAO.ReaderDAO">
+    
+    <!-- 根据邮箱检索读者信息 -->
+    <select id="getReader" resultType="tech.owalabuy.entity.Reader">
+        SELECT * FROM Reader WHERE email = #{email};
+    </select>
+
+    <!-- 检查所有挂失借阅证的读者 -->
+    <select id="getReaderLosted" resultType="tech.owalabuy.entity.Reader">
+        SELECT * FROM Reader WHERE lost_flag = true;
+    </select>
+
+    <!-- 获取所有读者信息 -->
+    <select id="getAllReaders" resultType="tech.owalabuy.entity.Reader">
+        SELECT * FROM Reader;
+    </select>
+
+    <!-- 新增读者 -->
+    <insert id="insertReader">
+        INSERT INTO Reader (email, name, max_borrow_days, lost_flag)
+        VALUES (#{email}, #{name}, #{max_borrow_days}, #{lost_flag});
+    </insert>
+
+    <!-- 修改读者信息 -->
+    <update id="updateReader">
+        UPDATE Reader
+        SET name = #{name}, max_borrow_days = #{max_borrow_days}, lost_flag = #{lost_flag}
+        WHERE email = #{email};
+    </update>
+
+    <!-- 通过邮箱删除读者 -->
+    <delete id="deleteReaderByEmail">
+        DELETE FROM Reader WHERE email = #{email};
+    </delete>
+
+</mapper>
+

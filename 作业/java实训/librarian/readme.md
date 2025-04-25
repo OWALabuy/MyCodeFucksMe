@@ -1,0 +1,1 @@
+tabby这个终端模拟器在windows上的表现比ConEmu更好 至少vim不会有错位问题 界面还挺干净整洁

@@ -22,10 +22,15 @@
 #### 借阅表 (Borrow)
 | 字段中文名  | 字段代码名 | 类型         | 空/非空  | pk? | fk | 说明                |
 |------------|------------|--------------|----------|-----|----|---------------------|
-| 读者邮箱   | email      | varchar(255) | non-null | yes | yes | 外键，指向读者表     |
-| ISBN号     | isbn       | varchar(17)  | non-null | yes | yes | 外键，指向图书表     |
+| id         | id         | int          | non-null | yes |    | 主键 自增           |
+| 读者邮箱   | email      | varchar(255) | non-null |     | yes | 外键，指向读者表     |
+| ISBN号     | isbn       | varchar(17)  | non-null |     | yes | 外键，指向图书表     |
 | 借书日期   | borrow_date| date         | non-null |     |    | 借书日期            |
 | 还书日期   | return_date| date         | nullable |     |    | 还书日期（若有）    |
+
+这个地方改一下...不要用读者邮箱和isbn做主键 避免一个读者借阅了一本书后再也无法借阅相同的书籍
+
+sql语句也要改下 等下把数据库弄一下喵
 
 #### 内部人员表 (Staff)
 | 字段中文名    | 字段代码名   | 类型         | 空/非空  | pk? | fk | 说明              |
